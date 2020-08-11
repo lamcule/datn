@@ -1,0 +1,1112 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "APIs for VMA Project",
+        "version": "1.0.0",
+        "title": "VMA APIs",
+        "termsOfService": "http://vma.mon.vn",
+        "contact": {
+            "email": "admin@vma.mon.vn"
+        },
+        "license": {
+            "name": "Private",
+            "url": "http://vma.mon.vn"
+        }
+    },
+    "basePath": "/en/fe-api",
+    "tags": [
+        {
+            "name": "auth",
+            "description": "Authentication"
+        },
+        {
+            "name": "user",
+            "description": "Operations about user"
+        },
+        {
+            "name": "news",
+            "description": "Các APis cho news"
+        },
+        {
+            "name": "motor sport",
+            "description": "Các APis cho Motor Sport"
+        }
+    ],
+    "schemes": [
+        "https",
+        "http"
+    ],
+    "paths": {
+        "/login": {
+            "post": {
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Login to the system",
+                "description": "",
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "parameters": [
+                    {
+                        "in": "formData",
+                        "name": "email",
+                        "description": "Your email address",
+                        "required": true,
+                        "type": "string",
+                        "format": "email"
+                    },
+                    {
+                        "in": "formData",
+                        "name": "password",
+                        "description": "Your password",
+                        "required": true,
+                        "type": "string",
+                        "format": "password"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "token": {
+                                    "type": "string"
+                                },
+                                "user": {
+                                    "$ref": "#/definitions/User"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid Data",
+                        "schema": {
+                            "$ref": "#/definitions/Response400"
+                        }
+                    }
+                }
+            }
+        },
+        "/news/highlight": {
+            "get": {
+                "tags": [
+                    "news"
+                ],
+                "summary": "Lấy danh sách news cho box highlight",
+                "description": "",
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer"
+                                            },
+                                            "title": {
+                                                "type": "string"
+                                            },
+                                            "short_description": {
+                                                "type": "string"
+                                            },
+                                            "normal_image": {
+                                                "type": "string"
+                                            },
+                                            "highlight_image": {
+                                                "type": "string"
+                                            },
+                                            "tags": {
+                                                "type": "string"
+                                            },
+                                            "public_url": {
+                                                "type": "string"
+                                            },
+                                            "created_at": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                },
+                                "links": {
+                                    "$ref": "#/definitions/Links"
+                                },
+                                "meta": {
+                                    "$ref": "#/definitions/Meta"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/news/feed": {
+            "get": {
+                "tags": [
+                    "news"
+                ],
+                "summary": "Lấy danh sách news feed",
+                "description": "",
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "page",
+                        "description": "The page",
+                        "required": false,
+                        "type": "integer",
+                        "default": 1
+                    },
+                    {
+                        "in": "query",
+                        "name": "per_page",
+                        "description": "The number of items per page",
+                        "required": false,
+                        "type": "integer",
+                        "default": 10
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer"
+                                            },
+                                            "title": {
+                                                "type": "string"
+                                            },
+                                            "short_description": {
+                                                "type": "string"
+                                            },
+                                            "normal_image": {
+                                                "type": "string"
+                                            },
+                                            "type": {
+                                                "type": "string"
+                                            },
+                                            "link_video": {
+                                                "type": "string"
+                                            },
+                                            "tags": {
+                                                "type": "string"
+                                            },
+                                            "collection_images": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "origin": {
+                                                            "type": "string"
+                                                        },
+                                                        "thumbnail": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "public_url": {
+                                                "type": "string"
+                                            },
+                                            "created_at": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                },
+                                "links": {
+                                    "$ref": "#/definitions/Links"
+                                },
+                                "meta": {
+                                    "$ref": "#/definitions/Meta"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/news/featured": {
+            "get": {
+                "tags": [
+                    "news"
+                ],
+                "summary": "Lấy danh sách feature news",
+                "description": "",
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "page",
+                        "description": "The page",
+                        "required": false,
+                        "type": "integer",
+                        "default": 1
+                    },
+                    {
+                        "in": "query",
+                        "name": "per_page",
+                        "description": "The number of items per page",
+                        "required": false,
+                        "type": "integer",
+                        "default": 10
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer"
+                                            },
+                                            "title": {
+                                                "type": "string"
+                                            },
+                                            "short_description": {
+                                                "type": "string"
+                                            },
+                                            "normal_image": {
+                                                "type": "string"
+                                            },
+                                            "tags": {
+                                                "type": "string"
+                                            },
+                                            "public_url": {
+                                                "type": "string"
+                                            },
+                                            "created_at": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                },
+                                "links": {
+                                    "$ref": "#/definitions/Links"
+                                },
+                                "meta": {
+                                    "$ref": "#/definitions/Meta"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/news/related/{id}": {
+            "get": {
+                "tags": [
+                    "news"
+                ],
+                "summary": "Lấy danh sách news liên quan",
+                "description": "",
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The page",
+                        "required": true,
+                        "type": "integer",
+                        "default": 1
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Số lượng tin lấy ra",
+                        "required": false,
+                        "type": "integer",
+                        "default": 5
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer"
+                                            },
+                                            "title": {
+                                                "type": "string"
+                                            },
+                                            "short_description": {
+                                                "type": "string"
+                                            },
+                                            "normal_image": {
+                                                "type": "string"
+                                            },
+                                            "tags": {
+                                                "type": "string"
+                                            },
+                                            "public_url": {
+                                                "type": "string"
+                                            },
+                                            "created_at": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                },
+                                "links": {
+                                    "$ref": "#/definitions/Links"
+                                },
+                                "meta": {
+                                    "$ref": "#/definitions/Meta"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/news/find/{id}": {
+            "get": {
+                "tags": [
+                    "news"
+                ],
+                "summary": "Lấy chi tiết tin",
+                "description": "",
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "ID tin",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64",
+                        "default": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "content": {
+                                            "type": "string"
+                                        },
+                                        "normal_image": {
+                                            "type": "string"
+                                        },
+                                        "link_video": {
+                                            "type": "string"
+                                        },
+                                        "tags": {
+                                            "type": "string"
+                                        },
+                                        "public_url": {
+                                            "type": "string"
+                                        },
+                                        "created_at": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/motor-sport/feed": {
+            "get": {
+                "tags": [
+                    "motor sport"
+                ],
+                "summary": "Lấy danh sách news feed của Mục Motor Sport",
+                "description": "",
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "page",
+                        "description": "The page",
+                        "required": false,
+                        "type": "integer",
+                        "default": 1
+                    },
+                    {
+                        "in": "query",
+                        "name": "per_page",
+                        "description": "The number of items per page",
+                        "required": false,
+                        "type": "integer",
+                        "default": 10
+                    },
+                    {
+                        "in": "query",
+                        "name": "category",
+                        "description": "Danh mục của Motor Sport. Bao gồm: 'MOTOSPORT>>DRIFTING', 'MOTOSPORT>>FORMULA ONE', 'MOTOSPORT>>OFFROAD', 'MOTOSPORT>>KARTING'",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer"
+                                            },
+                                            "title": {
+                                                "type": "string"
+                                            },
+                                            "short_description": {
+                                                "type": "string"
+                                            },
+                                            "normal_image": {
+                                                "type": "string"
+                                            },
+                                            "type": {
+                                                "type": "string"
+                                            },
+                                            "link_video": {
+                                                "type": "string"
+                                            },
+                                            "tags": {
+                                                "type": "string"
+                                            },
+                                            "collection_images": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "origin": {
+                                                            "type": "string"
+                                                        },
+                                                        "thumbnail": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "public_url": {
+                                                "type": "string"
+                                            },
+                                            "created_at": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                },
+                                "links": {
+                                    "$ref": "#/definitions/Links"
+                                },
+                                "meta": {
+                                    "$ref": "#/definitions/Meta"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/motor-sport/featured": {
+            "get": {
+                "tags": [
+                    "motor sport"
+                ],
+                "summary": "Lấy danh sách feature của mục motor",
+                "description": "",
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "page",
+                        "description": "The page",
+                        "required": false,
+                        "type": "integer",
+                        "default": 1
+                    },
+                    {
+                        "in": "query",
+                        "name": "per_page",
+                        "description": "The number of items per page",
+                        "required": false,
+                        "type": "integer",
+                        "default": 10
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer"
+                                            },
+                                            "title": {
+                                                "type": "string"
+                                            },
+                                            "short_description": {
+                                                "type": "string"
+                                            },
+                                            "normal_image": {
+                                                "type": "string"
+                                            },
+                                            "tags": {
+                                                "type": "string"
+                                            },
+                                            "public_url": {
+                                                "type": "string"
+                                            },
+                                            "created_at": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                },
+                                "links": {
+                                    "$ref": "#/definitions/Links"
+                                },
+                                "meta": {
+                                    "$ref": "#/definitions/Meta"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/race-events": {
+            "get": {
+                "tags": [
+                    "race event"
+                ],
+                "summary": "Lấy danh sách lịch các giải đấu",
+                "description": "",
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "sport_type",
+                        "description": "Loại: 'FORMULA ONE','OFFROAD','DRIFTING','KARTING'",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "page",
+                        "description": "The page",
+                        "required": false,
+                        "type": "integer",
+                        "default": 1
+                    },
+                    {
+                        "in": "query",
+                        "name": "per_page",
+                        "description": "The number of items per page",
+                        "required": false,
+                        "type": "integer",
+                        "default": 10
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer"
+                                            },
+                                            "race_name": {
+                                                "type": "string"
+                                            },
+                                            "sport_type": {
+                                                "type": "string"
+                                            },
+                                            "season": {
+                                                "type": "string"
+                                            },
+                                            "country_image": {
+                                                "type": "string"
+                                            },
+                                            "race_date": {
+                                                "type": "string"
+                                            },
+                                            "public_url": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                },
+                                "links": {
+                                    "$ref": "#/definitions/Links"
+                                },
+                                "meta": {
+                                    "$ref": "#/definitions/Meta"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/resources": {
+            "get": {
+                "tags": [
+                    "resources"
+                ],
+                "summary": "Lấy danh sách resource",
+                "description": "",
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "type",
+                        "description": "Loại: 'all','album','video','documents','publications'",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "page",
+                        "description": "The page",
+                        "required": false,
+                        "type": "integer",
+                        "default": 1
+                    },
+                    {
+                        "in": "query",
+                        "name": "per_page",
+                        "description": "The number of items per page",
+                        "required": false,
+                        "type": "integer",
+                        "default": 10
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer"
+                                            },
+                                            "name": {
+                                                "type": "string"
+                                            },
+                                            "type": {
+                                                "type": "string"
+                                            },
+                                            "image": {
+                                                "type": "string"
+                                            },
+                                            "publish_date": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                },
+                                "links": {
+                                    "$ref": "#/definitions/Links"
+                                },
+                                "meta": {
+                                    "$ref": "#/definitions/Meta"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/resources/find/{id}": {
+            "get": {
+                "tags": [
+                    "resources"
+                ],
+                "summary": "Lấy chi tiết resource",
+                "description": "",
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "ID resource",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64",
+                        "default": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "image": {
+                                            "type": "string"
+                                        },
+                                        "publish_date": {
+                                            "type": "string"
+                                        },
+                                        "collection": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "origin": {
+                                                        "type": "string"
+                                                    },
+                                                    "thumbnail": {
+                                                        "type": "string"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/partners": {
+            "get": {
+                "tags": [
+                    "partners"
+                ],
+                "summary": "Lấy danh sách partner",
+                "description": "",
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "type",
+                        "description": "Loại: 'partner','sponsor'",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "page",
+                        "description": "The page",
+                        "required": false,
+                        "type": "integer",
+                        "default": 1
+                    },
+                    {
+                        "in": "query",
+                        "name": "per_page",
+                        "description": "The number of items per page",
+                        "required": false,
+                        "type": "integer",
+                        "default": 10
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer"
+                                            },
+                                            "short_name": {
+                                                "type": "string"
+                                            },
+                                            "full_name": {
+                                                "type": "string"
+                                            },
+                                            "description": {
+                                                "type": "string"
+                                            },
+                                            "type": {
+                                                "type": "string"
+                                            },
+                                            "logo": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                },
+                                "links": {
+                                    "$ref": "#/definitions/Links"
+                                },
+                                "meta": {
+                                    "$ref": "#/definitions/Meta"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/partners/find/{id}": {
+            "get": {
+                "tags": [
+                    "partners"
+                ],
+                "summary": "Lấy chi tiết partner",
+                "description": "",
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "ID partner",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64",
+                        "default": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        },
+                                        "short_name": {
+                                            "type": "string"
+                                        },
+                                        "full_name": {
+                                            "type": "string"
+                                        },
+                                        "description": {
+                                            "type": "string"
+                                        },
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "logo": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+
+    },
+    "securityDefinitions": {
+        "api_key": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header",
+            "description": "Example: Bearer f55830c6-5bc2-4dd4-86fb-3e2c8a8b0dcd"
+        }
+    },
+    "definitions": {
+        "User": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "fullname": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string",
+                    "format": "email"
+                },
+                "created_at": {
+                    "type": "integer"
+                }
+            },
+            "xml": {
+                "name": "User"
+            }
+        },
+        "Links": {
+            "type": "object",
+            "properties": {
+                "first": {
+                    "type": "string"
+                },
+                "last": {
+                    "type": "string"
+                },
+                "prev": {
+                    "type": "string"
+                },
+                "next": {
+                    "type": "string"
+                }
+            }
+        },
+        "Meta": {
+            "type": "object",
+            "properties": {
+                "current_page": {
+                    "type": "integer"
+                },
+                "from": {
+                    "type": "integer"
+                },
+                "last_page": {
+                    "type": "integer"
+                },
+                "path": {
+                    "type": "string"
+                },
+                "per_page": {
+                    "type": "integer"
+                },
+                "to": {
+                    "type": "integer"
+                },
+                "total": {
+                    "type": "integer"
+                }
+            }
+        },
+        "Response400": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "type": "string"
+                }
+            }
+        },
+        "Response401": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string",
+                    "example": "Unauthenticated."
+                }
+            }
+        }
+    },
+    "externalDocs": {
+        "description": "Find out more about Swagger",
+        "url": "http://swagger.io"
+    }
+}

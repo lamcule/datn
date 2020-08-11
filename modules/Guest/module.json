@@ -1,0 +1,15 @@
+{
+    "name": "Guest",
+    "alias": "guest",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 100,
+    "providers": [
+        "Modules\\Guest\\Providers\\GuestServiceProvider",
+        "Modules\\Guest\\Providers\\EventServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}
