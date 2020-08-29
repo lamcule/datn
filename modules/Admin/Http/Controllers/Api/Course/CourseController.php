@@ -87,4 +87,9 @@ class CourseController extends ApiController
         $province = Province::all();
         return response()->json($province);
     }
+
+    public function getActiveCourse()
+    {
+        return CourseTransformer::collection($this->courseRepository->getActiveCourse());
+    }
 }

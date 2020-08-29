@@ -21,10 +21,6 @@ class Admin
         if (!$auth->check()) {
             return redirect()->guest(route('login.admin'))->withErrors('Vui lòng đăng nhập');
         }
-        if (!$auth->user()->hasRole('cms_login')) {
-            $auth->logout();
-            return redirect()->guest(route('login.admin'))->withErrors('Vui lòng đăng nhâp bằng tài khoản quản trị!');
-        }
         return $next($request);
     }
 }

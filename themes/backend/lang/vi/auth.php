@@ -23,7 +23,9 @@ return [
     'label' => [
         'Reset Password' => 'Reset Password',
         'email' => 'Email',
+        'username' => 'Email',
         'password' => 'Mật khẩu',
+        'forgot password' => 'Quên mật khẩu',
         'password_confirmation' => 'Nhập lại mật khẩu',
         'sign in to start your session' => 'Đăng nhập để bắt đầu phiên làm việc',
         'input your email to get new password' => 'Nhập email để nhận mật khẩu ',

@@ -19,7 +19,6 @@ class TeacherTransformer extends Resource
             'username' => $this->username,
             'profile' =>$this->profile?  new ProfileTransformer($this->profile) : [],
             'grades' => GradeTransformer::collection($this->grades),
-
             'status' => $this->status,
             'created_by' => $this->created_by,
             'createdBy' => $this->createdBy,
@@ -32,6 +31,7 @@ class TeacherTransformer extends Resource
             'urls' => [
                 'delete_url' => route('api.auth.users.destroy', $this->id),
             ],
+            'status' => $this->status,
         ];
 
 

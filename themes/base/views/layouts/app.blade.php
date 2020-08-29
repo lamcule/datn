@@ -64,6 +64,8 @@
     @include('base::partials.footer')
 </div>
 
+{!! \Theme::js('js/app.js') !!}
+
 {!! \Theme::js("js/jquery-3.3.1.min.js") !!}
 {!! \Theme::js("js/jquery-migrate-3.0.1.min.js") !!}
 {!! \Theme::js("js/jquery-ui.js") !!}
@@ -80,7 +82,6 @@
 {!! \Theme::js("js/jquery.mb.YTPlayer.min.js") !!}
 {!! \Theme::js("js/main.js") !!}
 
-{!! \Theme::js('js/app.js') !!}
 @stack('js-stack')
 
 </body>

@@ -1,6 +1,6 @@
 import TeacherList from './../components/teacher/index'
 import TeacherCreateForm from './../components/teacher/create'
-// import teacherUpdateForm from './../components/teacher/update'
+import TeacherUpdateForm from './../components/teacher/update'
 
 const currentLocale = '/' + window.MonCMS.currentLocale
 
@@ -18,14 +18,14 @@ export default [
       pageTitle: 'teacher.label.create_record'
     }
   },
-  //
-  // {
-  //   path: '/admin/teacher/:userId/edit',
-  //   name: 'admin.teacher.edit',
-  //   component: teacherUpdateForm,
-  //   props: {
-  //     pageTitle: 'teacher.label.update_record'
-  //   }
-  // }
+
+  {
+    path: '/admin/teacher/:userId/edit',
+    name: 'admin.teacher.edit',
+    component: TeacherUpdateForm,
+    props: {
+      pageTitle: 'teacher.label.update_record'
+    }
+  }
 
 ]

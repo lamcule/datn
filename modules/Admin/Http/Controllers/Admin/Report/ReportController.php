@@ -59,6 +59,24 @@ class ReportController extends Controller
         return (new StudentExport($request))->download('Participant list.xlsx');
 
     }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return Response
+     */
+    public function teacher()
+    {
+
+        return view('admin::reports.index');
+    }
+    public function downloadTeacher(Request $request)
+    {
+
+        return (new StudentExport($request))->download('Participant list.xlsx');
+
+    }
+
     /**
      * Display a listing of the resource.
      *

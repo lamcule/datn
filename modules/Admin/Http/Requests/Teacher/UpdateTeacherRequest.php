@@ -1,11 +1,11 @@
 <?php
 
-namespace Modules\Admin\Http\Requests\Student;
+namespace Modules\Admin\Http\Requests\Teacher;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class UpdateStudentRequest extends FormRequest
+class UpdateTeacherRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -26,7 +26,6 @@ class UpdateStudentRequest extends FormRequest
             'phone' => [
                 "required",
                 Rule::unique('profiles', 'phone')->ignore($user->id, 'user_id')
-
             ]
 
         ];
@@ -42,6 +41,7 @@ class UpdateStudentRequest extends FormRequest
     {
         return true;
     }
+
     public function messages()
     {
         return [

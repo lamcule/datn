@@ -56,3 +56,8 @@ Route::get('/province', [
     'as' => 'api.province.index',
     'uses' => 'Course\CourseController@getProvinces'
 ]);
+
+Route::get('/active-course', [
+    'as' => 'api.course.active',
+    'uses' => 'Course\CourseController@getActiveCourse'
+]);

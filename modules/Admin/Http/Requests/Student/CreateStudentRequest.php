@@ -9,10 +9,7 @@ class CreateStudentRequest extends FormRequest
     public function rules()
     {
         return [
-
-
             'first_name' => 'required',
-
             'last_name' => 'required',
             'email' => 'required|unique:users|email',
             'phone' => 'required|unique:profiles,phone',
@@ -28,9 +25,7 @@ class CreateStudentRequest extends FormRequest
     public function messages()
     {
         return [
-
             'first_name.required' => 'First name is required',
-
             'last_name.required' => 'Last name is required',
             'email.required' => 'Email  is required',
             'password.required' => 'Mật khẩu bắt buộc',

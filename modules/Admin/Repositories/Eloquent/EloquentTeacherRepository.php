@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Modules\Admin\Repositories\TeacherRepository;
 //use Modules\Guest\Events\TeacherRegistedCourse;
+use Modules\Guest\Events\StudentRegistedCourse;
 use Modules\Guest\Repositories\GuestRepository;
 use Modules\Mon\Entities\Grade;
 use Modules\Mon\Entities\Profile;
@@ -26,7 +27,7 @@ class EloquentTeacherRepository extends BaseRepository implements TeacherReposit
     public function create($data)
     {
         $data['username'] = $data['email'];
-        $data['password'] = '123456svf';
+        $data['password'] = \Hash::make(env('TEACHER_PASSWORD'));
         $data['name'] =$data['last_name'] . ' ' . $data['first_name'] ;
         $data['full_name'] = $data['last_name'] . ' ' . $data['first_name'] ;
         // create user
@@ -263,40 +264,40 @@ class EloquentTeacherRepository extends BaseRepository implements TeacherReposit
         return $query->paginate($request->get('per_page', 10));
     }
 
-//    public function registGrade($user, $gradesId)
-//    {
-//
-//        $message = '';
-//        $status = true;
-//        $gradeJoined = $user->grades()->get()->pluck('id')->all();
-//        $user->grades()->detach();
-//        $guestRepository = app(GuestRepository::class);
-//        if (count($gradesId) > 0) {
-//            foreach ($gradesId as $gradeId) {
-//                /** @var Grade $grade */
-//                $grade = Grade::query()->where('id', $gradeId)->first();
-//                if (!$grade) {
-//                    $message .= "Lớp học $gradeId không tồn tại. ";
-//                    $status = false;
-//                } else {
-//                    // regist grade
-//                    $result = $guestRepository->registGrade($user, $grade);
-//                    if ($result === true) {
-//                        if (!in_array($grade->id, $gradeJoined)) {
-//                            event(new TeacherRegistedCourse($user, $grade));
-//                        }
-//
-//                        $message = "";
-//                        $status = true;
-//
-//                    } else {
-//                        $message .= "Học viên đã đăng ký khoá học $gradeId ";
-//                        $status = false;
-//                    }
-//                }
-//            }
-//        }
-//    }
+    public function registGrade($user, $gradesId)
+    {
+
+        $message = '';
+        $status = true;
+        $gradeJoined = $user->grades()->get()->pluck('id')->all();
+        $user->grades()->detach();
+        $guestRepository = app(GuestRepository::class);
+        if (count($gradesId) > 0) {
+            foreach ($gradesId as $gradeId) {
+                /** @var Grade $grade */
+                $grade = Grade::query()->where('id', $gradeId)->first();
+                if (!$grade) {
+                    $message .= "Lớp học $gradeId không tồn tại. ";
+                    $status = false;
+                } else {
+                    // regist grade
+                    $result = $guestRepository->registGrade($user, $grade);
+                    if ($result === true) {
+                        if (!in_array($grade->id, $gradeJoined)) {
+                            event(new StudentRegistedCourse($user, $grade));
+                        }
+
+                        $message = "";
+                        $status = true;
+
+                    } else {
+                        $message .= "Học viên đã đăng ký khoá học $gradeId ";
+                        $status = false;
+                    }
+                }
+            }
+        }
+    }
 
 
     public function getTeacherLessonReport(Request $request, $relations = null)
@@ -316,5 +317,14 @@ class EloquentTeacherRepository extends BaseRepository implements TeacherReposit
             $q->where('user_lesson.lesson_id', $lesson_id);
         });
         return $query;
+    }
+
+    public function getActiveTeacher() {
+        $query = $this->newQueryBuilder();
+        $query->where('type', 'teacher')
+            ->where('status', 'active')
+            ->orderBy('created_at', 'desc')
+            ->limit(10);
+        return $query->get();
     }
 }

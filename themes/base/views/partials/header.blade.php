@@ -11,13 +11,13 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-9 d-none d-lg-block">
-                    <a href="#" class="small mr-3"><span class="icon-question-circle-o mr-2"></span> Have a questions?</a>
+                    <a href="#" class="small mr-3"><span class="icon-question-circle-o mr-2"></span> Có câu hỏi?</a>
                     <a href="#" class="small mr-3"><span class="icon-phone2 mr-2"></span> 10 20 123 456</a>
                     <a href="#" class="small mr-3"><span class="icon-envelope-o mr-2"></span> info@mydomain.com</a>
                 </div>
                 <div class="col-lg-3 text-right">
-                    <a href="login.html" class="small mr-3"><span class="icon-unlock-alt"></span> Log In</a>
-                    <a href="register.html" class="small btn btn-primary px-4 py-2 rounded-0"><span class="icon-users"></span> Register</a>
+                    <a href="login.html" class="small mr-3"><span class="icon-unlock-alt"></span> Đăng nhâp</a>
+                    <a href="register.html" class="small btn btn-primary px-4 py-2 rounded-0"><span class="icon-users"></span> Đăng ký</a>
                 </div>
             </div>
         </div>
@@ -35,23 +35,23 @@
                     <nav class="site-navigation position-relative text-right" role="navigation">
                         <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
                             <li class="active">
-                                <a href="{{ route("guest.home") }}" class="nav-link text-left">Home</a>
+                                <a href="{{ route("guest.home") }}" class="nav-link text-left">Trang chủ</a>
                             </li>
                             <li class="has-children">
-                                <a href="{{ route("guest.about") }}" class="nav-link text-left">About Us</a>
+                                <a href="{{ route("guest.about") }}" class="nav-link text-left">Về chúng tôi</a>
                                 <ul class="dropdown">
-                                    <li><a href="teachers.html">Our Teachers</a></li>
-                                    <li><a href={{ route("guest.about") }}>Our School</a></li>
+                                    <li><a href="teachers.html">Đội ngũ giảng viên</a></li>
+                                    <li><a href={{ route("guest.about") }}>Về trung tâm</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="admissions.html" class="nav-link text-left">Admissions</a>
+                                <a href="admissions.html" class="nav-link text-left">Lịch khai giảng</a>
                             </li>
                             <li>
-                                <a href="{{ route("guest.course") }}" class="nav-link text-left">Courses</a>
+                                <a href="{{ route("guest.course") }}" class="nav-link text-left">Khóa học</a>
                             </li>
                             <li>
-                                <a href="{{ route("guest.contact") }}" class="nav-link text-left">Contact</a>
+                                <a href="{{ route("guest.contact") }}" class="nav-link text-left">Liên hệ</a>
                             </li>
                         </ul>                                                                                                                                                                                                                                                                                          </ul>
                     </nav>

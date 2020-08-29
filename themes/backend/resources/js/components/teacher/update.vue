@@ -7,7 +7,7 @@
                 <el-breadcrumb-item>
                     <a href="/admin">{{ $t('mon.breadcrumb.home') }}</a>
                 </el-breadcrumb-item>
-                <el-breadcrumb-item :to="{name: 'admin.student.index'}">{{ $t('student.label.students') }}
+                <el-breadcrumb-item :to="{name: 'admin.teacher.index'}">{{ $t('teacher.label.teachers') }}
                 </el-breadcrumb-item>
                 <el-breadcrumb-item> {{ $t(pageTitle) }}
                 </el-breadcrumb-item>

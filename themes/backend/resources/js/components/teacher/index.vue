@@ -1,13 +1,13 @@
 <template>
     <div>
         <div class="content-header">
-            <h1> Teacher manager</h1>
+            <h1> {{ $t('teacher.label.manage_teacher') }}</h1>
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item>
                     <a href="/admin">{{ $t('mon.breadcrumb.home') }}</a>
                 </el-breadcrumb-item>
                 <el-breadcrumb-item>
-                    Teacher manager
+                    {{ $t('teacher.label.manage_teacher') }}
                 </el-breadcrumb-item>
             </el-breadcrumb>
         </div>
@@ -65,7 +65,7 @@
                 >
                     <el-col
                         :sm="12"
-                        :md="4"
+                        :md="6"
                     >
                         <el-input
                             v-model="searchQuery"
@@ -79,14 +79,34 @@
                     >
                         <el-select
                             clearable
-                            v-model="filter.categories"
+                            v-model="filter.status"
                             style="width: 100% !important"
                             @change="fetchData"
                             filterable
-                            :placeholder="$t('teacher.label.categories')"
+                            :placeholder="$t('teacher.label.status')"
                         >
                             <el-option
-                                v-for="item in categories"
+                                v-for="item in listStatus"
+                                :key="item.value"
+                                :label="item.label"
+                                :value="item.value"
+                            />
+                        </el-select>
+                    </el-col>
+                    <el-col
+                        :sm="12"
+                        :md="4"
+                    >
+                        <el-select
+                            clearable
+                            v-model="filter.gender"
+                            style="width: 100% !important"
+                            @change="fetchData"
+                            filterable
+                            :placeholder="$t('teacher.label.gender')"
+                        >
+                            <el-option
+                                v-for="item in listGender"
                                 :key="item.value"
                                 :label="item.label"
                                 :value="item.value"
@@ -117,22 +137,19 @@
                                         <p>{{ $t('teacher.label.username') }}: {{ props.row.username }}</p>
                                         <p>{{ $t('teacher.label.birth_date') }}: {{ props.row.profile.birth_date }}</p>
                                         <p>{{ $t('teacher.label.phone') }}: {{ props.row.profile.phone }}</p>
-                                        <p>{{ $t('teacher.label.gender') }}: <span
-                                            class="badge"
-                                            :style="'background-color:' + genderColor(props.row)"
-                                        >{{ props.row.profile.gender }}</span></p>
+                                        <p>{{ $t('teacher.label.gender') }}: {{ props.row.profile.gender }}</p>
                                         <p>{{ $t('teacher.label.email') }}: {{ props.row.email }}</p>
                                         <p>{{ $t('teacher.label.created_at') }}: {{ props.row.created_at }}</p>
                                         <p>
-                                            {{ $t('teacher.label.course') }}: <span class="badge bg-danger"
-                                                                                    v-if="props.row.grades.length > 0">
-                        <ul>
-                          <li
-                              v-for="grade in props.row.grades"
-                              :key="'grade'+grade.id"
-                          >{{ grade.name }}</li>
-                        </ul>
-                      </span>
+                                            {{ $t('teacher.label.grade') }}: <span
+                                            v-if="props.row.grades.length > 0">
+                                            <ul>
+                                              <li
+                                                  v-for="grade in props.row.grades"
+                                                  :key="'grade'+grade.id"
+                                              >{{ grade.name }}</li>
+                                            </ul>
+                                          </span>
                                         </p>
                                     </div>
                                     <div class="col-md-9">
@@ -147,19 +164,6 @@
                                             props.row.profile.phoenix.name : '' }}</p>
                                         <p v-if="props.row.profile">{{ $t('teacher.label.address') }}: {{
                                             props.row.profile.address }}</p>
-                                        <p v-if="props.row.profile">{{ $t('teacher.label.company') }}: <span
-                                            class="badge bg-aqua">{{ props.row.profile.company }}</span>
-                                        </p>
-                                        <p v-if="props.row.profile">{{ $t('teacher.label.position') }}: {{
-                                            props.row.profile.position }}</p>
-                                        <p v-if="props.row.profile">{{ $t('teacher.label.company_address') }}: {{
-                                            props.row.profile.company_address }}</p>
-                                        <p v-if="props.row.profile">{{ $t('teacher.label.categories') }}: <span
-                                            class="badge bg-warning">{{ props.row.profile.categories.join(', ') }}</span>
-                                        </p>
-                                        <p v-if="props.row.profile">{{ $t('teacher.label.personal_categories') }}: <span
-                                            class="badge bg-danger">{{ props.row.profile.personal_categories.join(', ') }}</span>
-                                        </p>
                                     </div>
                                 </div>
                             </template>
@@ -170,9 +174,6 @@
                             :label="$t('teacher.label.username')"
                             sortable="custom"
                         >
-                            <template slot-scope="props">
-                                <span class="badge bg-maroon">{{ props.row.username }}</span>
-                            </template>
                         </el-table-column>
                         <el-table-column
                             prop="profile.full_name"
@@ -180,27 +181,16 @@
                             sortable="custom"
                         />
                         <el-table-column
-                            prop="grades.name"
-                            :label="$t('teacher.label.grade')"
-                            sortable="custom"
-                        />
-                        <el-table-column
                             prop="profile.birth_date"
                             :label="$t('teacher.label.birth_date')"
                             sortable="custom"
                         >
-                            <template slot-scope="props">
-                                <span class="badge bg-aqua">{{ props.row.profile.birth_date }}</span>
-                            </template>
                         </el-table-column>
                         <el-table-column
                             prop="email"
                             :label="$t('teacher.label.email')"
                             sortable="custom"
                         >
-                            <template slot-scope="props">
-                                <span class="badge bg-warning">{{ props.row.email }}</span>
-                            </template>
                         </el-table-column>
                         <el-table-column
                             prop="profile.phone"
@@ -212,12 +202,12 @@
                             :label="$t('teacher.label.gender')"
                             sortable="custom"
                         >
-                            <template slot-scope="props">
-                <span
-                    class="badge"
-                    :style="'background-color:' + genderColor(props.row)"
-                >{{ props.row.profile.gender }}</span>
-                            </template>
+                        </el-table-column>
+                        <el-table-column
+                            prop="status"
+                            :label="$t('teacher.label.status')"
+                            sortable="custom"
+                        >
                         </el-table-column>
                         <el-table-column prop="actions">
                             <template slot-scope="scope">
@@ -273,7 +263,6 @@
                 links: {},
                 searchQuery: '',
                 tableIsLoading: false,
-
                 columnsSearch: [],
                 listFilterColumn: [],
                 show_filter: true,
@@ -281,19 +270,10 @@
                 personal_categories: window.MonCMS.personal_categories,
                 provinces: [],
                 filter: {
-
                     status: '',
-                    categories: '',
-                    personal_categories: '',
                     gender: '',
-                    province_id: '',
-                    company: ''
                 },
                 listStatus: [
-                    {
-                        value: '',
-                        label: 'all'
-                    },
                     {
                         value: 'active',
                         label: 'active'
@@ -344,11 +324,7 @@
                     order: this.order_meta.order,
                     search: this.searchQuery,
                     status: this.filter.status,
-                    categories: this.filter.categories,
-                    personal_categories: this.filter.personal_categories,
                     gender: this.filter.gender,
-                    province_id: this.filter.province_id,
-                    company: this.filter.company,
                 }
 
                 axios.get(route('api.teacher.index', _.merge(properties, customProperties)))
@@ -366,11 +342,7 @@
                 let url = route('admin.report.downloadteacher', {
                     search: this.searchQuery,
                     status: this.filter.status,
-                    categories: this.filter.categories,
-                    personal_categories: this.filter.personal_categories,
                     gender: this.filter.gender,
-                    province_id: this.filter.province_id,
-                    company: this.filter.company,
                 })
                 window.open(url, '_blank')
             },
@@ -387,12 +359,6 @@
                 this.meta.current_page = 1
                 this.tableIsLoading = true
                 this.queryServer({per_page: 25})
-            },
-            genderColor(teacher) {
-                if (teacher.profile.gender == 'Nam') {
-                    return '#ff3d0c'
-                }
-                return '#0bb0ff'
             },
             handleSizeChange(event) {
                 this.tableIsLoading = true

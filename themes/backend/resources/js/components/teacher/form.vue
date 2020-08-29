@@ -248,19 +248,6 @@
                                     v-text="form.errors.first('description')"
                                 />
                             </el-form-item>
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-12">
-                    <div class="box box-warning">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">
-                                {{ $t('teacher.box.grades') }}
-                            </h3>
-                        </div>
-                        <div class="box-body">
                             <el-form-item
                                 :label="$t('teacher.label.grade joined')"
                                 :class="{'el-form-item is-error': form.errors.has('grade_ids') }"
@@ -285,6 +272,29 @@
                                     v-text="form.errors.first('grade_ids')"
                                 />
                             </el-form-item>
+                            <el-form-item
+                                :label="$t('teacher.label.status')"
+                                :class="{'el-form-item is-error': form.errors.has('status') }"
+                            >
+                                <el-select
+                                    v-model="modelForm.status"
+                                    filterable
+                                    :placeholder="$t('teacher.label.status')"
+                                >
+                                    <el-option
+                                        v-for="item in listStatus"
+                                        :key="item.value"
+                                        :label="item.label"
+                                        :value="item.value"
+                                    />
+                                </el-select>
+                                <div
+                                    v-if="form.errors.has('status')"
+                                    class="el-form-item__error"
+                                    v-text="form.errors.first('status')"
+                                />
+                            </el-form-item>
+
                         </div>
                     </div>
                 </div>

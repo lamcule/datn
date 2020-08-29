@@ -1,11 +1,10 @@
 <?php
 
-namespace Modules\Admin\Http\Requests\Student;
+namespace Modules\Admin\Http\Requests\Teacher;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class UpdateStudentRequest extends FormRequest
+class CreateTeacherRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -14,23 +13,12 @@ class UpdateStudentRequest extends FormRequest
      */
     public function rules()
     {
-        $user = $this->route()->parameter('user');
-        $rules = [
+        return [
             'first_name' => 'required',
             'last_name' => 'required',
-            'email' => [
-                "required",
-                "email",
-                Rule::unique('users', 'email')->ignore($user->id, 'id')
-            ],
-            'phone' => [
-                "required",
-                Rule::unique('profiles', 'phone')->ignore($user->id, 'user_id')
-
-            ]
-
+            'email' => 'required|unique:users|email',
+            'phone' => 'required|unique:profiles,phone',
         ];
-        return $rules;
     }
 
     /**
@@ -42,6 +30,7 @@ class UpdateStudentRequest extends FormRequest
     {
         return true;
     }
+
     public function messages()
     {
         return [

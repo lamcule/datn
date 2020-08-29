@@ -28,7 +28,7 @@
                 <div class="row mb-5 justify-content-center text-center">
                     <div class="col-lg-4 mb-5">
                         <h2 class="section-title-underline mb-5">
-                            <span>Why Academics Works</span>
+                            <span>Vì sao nên học tiếng anh tại Academics?</span>
                         </h2>
                     </div>
                 </div>
@@ -40,9 +40,9 @@
                                 <span class="flaticon-mortarboard text-white"></span>
                             </div>
                             <div class="feature-1-content">
-                                <h2>Personalize Learning</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit morbi hendrerit elit</p>
-                                <p><a href="#" class="btn btn-primary px-4 rounded-0">Learn More</a></p>
+                                <h2>10.000</h2>
+                                <p>học viên đã theo học
+                                    trên toàn quốc</p>
                             </div>
                         </div>
                     </div>
@@ -52,9 +52,10 @@
                                 <span class="flaticon-school-material text-white"></span>
                             </div>
                             <div class="feature-1-content">
-                                <h2>Trusted Courses</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit morbi hendrerit elit</p>
-                                <p><a href="#" class="btn btn-primary px-4 rounded-0">Learn More</a></p>
+                                <h2>3 lợi ích 1 khóa học</h2>
+                                <p>Chương trình tích hợp độc quyền
+                                    giảng dạy tiếng Anh giao tiếp & học thuật,
+                                    đào tạo kỹ năng làm bài thi tiếng Anh</p>
                             </div>
                         </div>
                     </div>
@@ -64,9 +65,9 @@
                                 <span class="flaticon-library text-white"></span>
                             </div>
                             <div class="feature-1-content">
-                                <h2>Tools for Students</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit morbi hendrerit elit</p>
-                                <p><a href="#" class="btn btn-primary px-4 rounded-0">Learn More</a></p>
+                                <h2>100</h2>
+                                <p>giáo viên kinh nghiệm
+                                    được chứng nhận quốc tế</p>
                             </div>
                         </div>
                     </div>
@@ -82,155 +83,33 @@
                 <div class="row mb-5 justify-content-center text-center">
                     <div class="col-lg-6 mb-5">
                         <h2 class="section-title-underline mb-3">
-                            <span>Popular Courses</span>
+                            <span>Khóa học phổ biến</span>
                         </h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia, id?</p>
+                        <p>Khóa học mới nhất tại trung tâm</p>
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col-12">
-                        <div class="owl-slide-3 owl-carousel">
-                            <div class="course-1-item">
-                                <figure class="thumnail">
-                                    <a href="course-single.html"><img src="/themes/base/images/course_1.jpg" alt="Image"
-                                                                      class="img-fluid"></a>
-                                    <div class="price">$99.00</div>
-                                    <div class="category"><h3>Mobile Application</h3></div>
-                                </figure>
-                                <div class="course-1-content pb-4">
-                                    <h2>How To Create Mobile Apps Using Ionic</h2>
-                                    <div class="rating text-center mb-3">
-                                        <span class="icon-star2 text-warning"></span>
-                                        <span class="icon-star2 text-warning"></span>
-                                        <span class="icon-star2 text-warning"></span>
-                                        <span class="icon-star2 text-warning"></span>
-                                        <span class="icon-star2 text-warning"></span>
-                                    </div>
-                                    <p class="desc mb-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                                        Similique accusantium ipsam.</p>
-                                    <p><a href="course-single.html" class="btn btn-primary rounded-0 px-4">Enroll In
-                                        This Course</a></p>
-                                </div>
+                    <div v-for="(course, index) in courses" :key="index" class="course-1-item col-md-4">
+                        <figure class="thumnail">
+                            <a href="course-single.html"><img src="/themes/base/images/course_1.jpg" alt="Image"
+                                                              class="img-fluid"></a>
+                            <div class="price">{{ course.tuition }}</div>
+                            <div class="category"><h3>{{ course.name }}</h3></div>
+                        </figure>
+                        <div class="course-1-content pb-4">
+                            <h2>{{ course.type }}</h2>
+                            <div class="rating text-center mb-3">
+                                <span class="icon-star2 text-warning"></span>
+                                <span class="icon-star2 text-warning"></span>
+                                <span class="icon-star2 text-warning"></span>
+                                <span class="icon-star2 text-warning"></span>
+                                <span class="icon-star2 text-warning"></span>
                             </div>
-
-                            <div class="course-1-item">
-                                <figure class="thumnail">
-                                    <a href="course-single.html"><img src="/themes/base/images/course_2.jpg" alt="Image"
-                                                                      class="img-fluid"></a>
-                                    <div class="price">$99.00</div>
-                                    <div class="category"><h3>Web Design</h3></div>
-                                </figure>
-                                <div class="course-1-content pb-4">
-                                    <h2>How To Create Mobile Apps Using Ionic</h2>
-                                    <div class="rating text-center mb-3">
-                                        <span class="icon-star2 text-warning"></span>
-                                        <span class="icon-star2 text-warning"></span>
-                                        <span class="icon-star2 text-warning"></span>
-                                        <span class="icon-star2 text-warning"></span>
-                                        <span class="icon-star2 text-warning"></span>
-                                    </div>
-                                    <p class="desc mb-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                                        Similique accusantium ipsam.</p>
-                                    <p><a href="course-single.html" class="btn btn-primary rounded-0 px-4">Enroll In
-                                        This Course</a></p>
-                                </div>
-                            </div>
-
-                            <div class="course-1-item">
-                                <figure class="thumnail">
-                                    <a href="course-single.html"><img src="/themes/base/images/course_3.jpg" alt="Image"
-                                                                      class="img-fluid"></a>
-                                    <div class="price">$99.00</div>
-                                    <div class="category"><h3>Arithmetic</h3></div>
-                                </figure>
-                                <div class="course-1-content pb-4">
-                                    <h2>How To Create Mobile Apps Using Ionic</h2>
-                                    <div class="rating text-center mb-3">
-                                        <span class="icon-star2 text-warning"></span>
-                                        <span class="icon-star2 text-warning"></span>
-                                        <span class="icon-star2 text-warning"></span>
-                                        <span class="icon-star2 text-warning"></span>
-                                        <span class="icon-star2 text-warning"></span>
-                                    </div>
-                                    <p class="desc mb-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                                        Similique accusantium ipsam.</p>
-                                    <p><a href="courses-single.html" class="btn btn-primary rounded-0 px-4">Enroll In
-                                        This Course</a></p>
-                                </div>
-                            </div>
-
-                            <div class="course-1-item">
-                                <figure class="thumnail">
-                                    <a href="course-single.html"><img src="/themes/base/images/course_4.jpg" alt="Image"
-                                                                      class="img-fluid"></a>
-                                    <div class="price">$99.00</div>
-                                    <div class="category"><h3>Mobile Application</h3></div>
-                                </figure>
-                                <div class="course-1-content pb-4">
-                                    <h2>How To Create Mobile Apps Using Ionic</h2>
-                                    <div class="rating text-center mb-3">
-                                        <span class="icon-star2 text-warning"></span>
-                                        <span class="icon-star2 text-warning"></span>
-                                        <span class="icon-star2 text-warning"></span>
-                                        <span class="icon-star2 text-warning"></span>
-                                        <span class="icon-star2 text-warning"></span>
-                                    </div>
-                                    <p class="desc mb-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                                        Similique accusantium ipsam.</p>
-                                    <p><a href="course-single.html" class="btn btn-primary rounded-0 px-4">Enroll In
-                                        This Course</a></p>
-                                </div>
-                            </div>
-
-                            <div class="course-1-item">
-                                <figure class="thumnail">
-                                    <a href="course-single.html"><img src="/themes/base/images/course_5.jpg" alt="Image"
-                                                                      class="img-fluid"></a>
-                                    <div class="price">$99.00</div>
-                                    <div class="category"><h3>Web Design</h3></div>
-                                </figure>
-                                <div class="course-1-content pb-4">
-                                    <h2>How To Create Mobile Apps Using Ionic</h2>
-                                    <div class="rating text-center mb-3">
-                                        <span class="icon-star2 text-warning"></span>
-                                        <span class="icon-star2 text-warning"></span>
-                                        <span class="icon-star2 text-warning"></span>
-                                        <span class="icon-star2 text-warning"></span>
-                                        <span class="icon-star2 text-warning"></span>
-                                    </div>
-                                    <p class="desc mb-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                                        Similique accusantium ipsam.</p>
-                                    <p><a href="course-single.html" class="btn btn-primary rounded-0 px-4">Enroll In
-                                        This Course</a></p>
-                                </div>
-                            </div>
-
-                            <div class="course-1-item">
-                                <figure class="thumnail">
-                                    <a href="course-single.html"><img src="/themes/base/images/course_6.jpg" alt="Image"
-                                                                      class="img-fluid"></a>
-                                    <div class="price">$99.00</div>
-                                    <div class="category"><h3>Mobile Application</h3></div>
-                                </figure>
-                                <div class="course-1-content pb-4">
-                                    <h2>How To Create Mobile Apps Using Ionic</h2>
-                                    <div class="rating text-center mb-3">
-                                        <span class="icon-star2 text-warning"></span>
-                                        <span class="icon-star2 text-warning"></span>
-                                        <span class="icon-star2 text-warning"></span>
-                                        <span class="icon-star2 text-warning"></span>
-                                        <span class="icon-star2 text-warning"></span>
-                                    </div>
-                                    <p class="desc mb-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                                        Similique accusantium ipsam.</p>
-                                    <p><a href="course-single.html" class="btn btn-primary rounded-0 px-4">Enroll In
-                                        This Course</a></p>
-                                </div>
-                            </div>
-
+                            <p class="desc mb-4">{{ course.description }}</p>
+                            <p><a href="course-single.html" class="btn btn-primary rounded-0 px-4">Enroll In
+                                This Course</a></p>
                         </div>
-
                     </div>
                 </div>
 
@@ -268,101 +147,22 @@
                 <div class="row mb-5">
                     <div class="col-lg-4">
                         <h2 class="section-title-underline">
-                            <span>Testimonials</span>
+                            <span>Giảng viên của chúng tôi</span>
                         </h2>
                     </div>
                 </div>
 
 
                 <div class="owl-slide owl-carousel">
-
-                    <div class="ftco-testimonial-1">
+                    <div v-for="(teacher, index) in teachers" :key="index" class="ftco-testimonial-1">
                         <div class="ftco-testimonial-vcard d-flex align-items-center mb-4">
                             <img src="/themes/base/images/person_1.jpg" alt="Image" class="img-fluid mr-3">
                             <div>
-                                <h3>Allison Holmes</h3>
-                                <span>Designer</span>
+                                <h3>{{ teacher.name }}</h3>
                             </div>
                         </div>
                         <div>
-                            <p>&ldquo;Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque, mollitia.
-                                Possimus mollitia nobis libero quidem aut tempore dolore iure maiores, perferendis,
-                                provident numquam illum nisi amet necessitatibus. A, provident aperiam!&rdquo;</p>
-                        </div>
-                    </div>
-
-                    <div class="ftco-testimonial-1">
-                        <div class="ftco-testimonial-vcard d-flex align-items-center mb-4">
-                            <img src="/themes/base/images/person_2.jpg" alt="Image" class="img-fluid mr-3">
-                            <div>
-                                <h3>Allison Holmes</h3>
-                                <span>Designer</span>
-                            </div>
-                        </div>
-                        <div>
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque, mollitia. Possimus
-                                mollitia nobis libero quidem aut tempore dolore iure maiores, perferendis, provident
-                                numquam illum nisi amet necessitatibus. A, provident aperiam!</p>
-                        </div>
-                    </div>
-
-                    <div class="ftco-testimonial-1">
-                        <div class="ftco-testimonial-vcard d-flex align-items-center mb-4">
-                            <img src="/themes/base/images/person_4.jpg" alt="Image" class="img-fluid mr-3">
-                            <div>
-                                <h3>Allison Holmes</h3>
-                                <span>Designer</span>
-                            </div>
-                        </div>
-                        <div>
-                            <p>&ldquo;Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque, mollitia.
-                                Possimus mollitia nobis libero quidem aut tempore dolore iure maiores, perferendis,
-                                provident numquam illum nisi amet necessitatibus. A, provident aperiam!&rdquo;</p>
-                        </div>
-                    </div>
-
-                    <div class="ftco-testimonial-1">
-                        <div class="ftco-testimonial-vcard d-flex align-items-center mb-4">
-                            <img src="/themes/base/images/person_3.jpg" alt="Image" class="img-fluid mr-3">
-                            <div>
-                                <h3>Allison Holmes</h3>
-                                <span>Designer</span>
-                            </div>
-                        </div>
-                        <div>
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque, mollitia. Possimus
-                                mollitia nobis libero quidem aut tempore dolore iure maiores, perferendis, provident
-                                numquam illum nisi amet necessitatibus. A, provident aperiam!</p>
-                        </div>
-                    </div>
-
-                    <div class="ftco-testimonial-1">
-                        <div class="ftco-testimonial-vcard d-flex align-items-center mb-4">
-                            <img src="/themes/base/images/person_2.jpg" alt="Image" class="img-fluid mr-3">
-                            <div>
-                                <h3>Allison Holmes</h3>
-                                <span>Designer</span>
-                            </div>
-                        </div>
-                        <div>
-                            <p>&ldquo;Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque, mollitia.
-                                Possimus mollitia nobis libero quidem aut tempore dolore iure maiores, perferendis,
-                                provident numquam illum nisi amet necessitatibus. A, provident aperiam!&rdquo;</p>
-                        </div>
-                    </div>
-
-                    <div class="ftco-testimonial-1">
-                        <div class="ftco-testimonial-vcard d-flex align-items-center mb-4">
-                            <img src="/themes/base/images/person_4.jpg" alt="Image" class="img-fluid mr-3">
-                            <div>
-                                <h3>Allison Holmes</h3>
-                                <span>Designer</span>
-                            </div>
-                        </div>
-                        <div>
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque, mollitia. Possimus
-                                mollitia nobis libero quidem aut tempore dolore iure maiores, perferendis, provident
-                                numquam illum nisi amet necessitatibus. A, provident aperiam!</p>
+                            <p>{{ teacher.profile.description }}</p>
                         </div>
                     </div>
 
@@ -512,10 +312,37 @@
 </template>
 
 <script>
-    import axios from 'axios'
+    // import axios from 'axios'
+    import request from "../utils/request";
 
     export default {
-
+        data() {
+            return {
+                courses: [],
+                teachers: [],
+            }
+        },
+        mounted() {
+            this.fetchData()
+        },
+        methods: {
+            getCourse() {
+                request.get('/active-course')
+                    .then((response) => {
+                        this.courses = response.data.data
+                    })
+            },
+            getTeacher() {
+                request.get('/active-teacher')
+                    .then((response) => {
+                        this.teachers = response.data.data
+                    })
+            },
+            fetchData() {
+                this.getCourse()
+                this.getTeacher()
+            },
+        }
     }
 </script>
 

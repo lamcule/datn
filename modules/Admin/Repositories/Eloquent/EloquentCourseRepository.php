@@ -108,4 +108,13 @@ class EloquentCourseRepository extends BaseRepository implements CourseRepositor
         return $query->paginate($request->get('per_page', 10));
     }
 
+    public function getActiveCourse()
+    {
+        $query = $this->newQueryBuilder();
+        $query->where('status', 'active')
+            ->orderBy('created_at', 'desc')
+            ->limit(10);
+        return $query->get();
+    }
+
 }

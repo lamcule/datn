@@ -5,9 +5,13 @@ namespace Modules\Admin\Http\Controllers\Api\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Modules\Admin\Http\Requests\Teacher\CreateTeacherRequest;
+use Modules\Admin\Http\Requests\Teacher\UpdateTeacherRequest;
 use Modules\Admin\Repositories\TeacherRepository;
+use Modules\Admin\Transformers\Teacher\TeacherFullTransformer;
 use Modules\Admin\Transformers\Teacher\TeacherTransformer;
 use Modules\Mon\Auth\Contracts\Authentication;
+use Modules\Mon\Entities\User;
 use Modules\Mon\Http\Controllers\ApiController;
 
 class TeacherController extends ApiController
@@ -37,46 +41,48 @@ class TeacherController extends ApiController
     }
 
 
-//    public function store(CreateTeacherRequest $request)
-//    {
-//        $this->teacherRepository->create($request->all());
-//
-//        return response()->json([
-//            'errors' => false,
-//            'message' => trans('backend::teacher.message.create success'),
-//        ]);
-//    }
-//
-//
-//    public function find(User $user)
-//    {
-//        return new  TeacherFullTransformer($user);
-//    }
-//
-//    public function update(User $user, UpdateTeacherRequest $request)
-//    {
-//        $this->teacherRepository->update($user, $request->all());
-//
-//        return response()->json([
-//            'errors' => false,
-//            'message' => trans('backend::teacher.message.update success'),
-//        ]);
-//    }
-//
-//    public function destroy(User $user)
-//    {
-//        $this->teacherRepository->destroy($user);
-//
-//        return response()->json([
-//            'errors' => false,
-//            'message' => trans('backend::teacher.message.delete success'),
-//        ]);
-//    }
+    public function store(CreateTeacherRequest $request)
+    {
+        $this->teacherRepository->create($request->all());
+
+        return response()->json([
+            'errors' => false,
+            'message' => trans('backend::teacher.message.create success'),
+        ]);
+    }
+
+
+    public function find(User $user)
+    {
+        return new  TeacherFullTransformer($user);
+    }
+
+    public function update(User $user, UpdateTeacherRequest $request)
+    {
+        $this->teacherRepository->update($user, $request->all());
+
+        return response()->json([
+            'errors' => false,
+            'message' => trans('backend::teacher.message.update success'),
+        ]);
+    }
+
+    public function destroy(User $user)
+    {
+        $this->teacherRepository->destroy($user);
+
+        return response()->json([
+            'errors' => false,
+            'message' => trans('backend::teacher.message.delete success'),
+        ]);
+    }
 
     public function import(Request $request)
     {
 
+    }
 
-
+    public function getActiveTeacher() {
+        return TeacherTransformer::collection($this->teacherRepository->getActiveTeacher());
     }
 }

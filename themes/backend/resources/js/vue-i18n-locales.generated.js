@@ -694,7 +694,7 @@ export default {
                 "members": "Thành viên",
                 "type": "Loại",
                 "status": "Trạng thái",
-                "birth_date": "Ngày tháng năm sinh",
+                "birth_date": "Ngày sinh",
                 "gender": "Giới tính",
                 "first_name": "Tên giáo viên",
                 "middle_name": "Tên lót",
@@ -716,6 +716,7 @@ export default {
                 "grade": "Lớp",
                 "grade joined": "Lớp giảng dạy",
                 "description": "Mô tả kinh nghiệm",
+                "manage_teacher": "Quản lý giáo viên",
             },
             "tabs": {
                 "data": "Thông tin",
@@ -938,8 +939,10 @@ export default {
             "label": {
                 "Reset Password": "Reset Password",
                 "email": "Email",
+                "username": "Email",
                 "password": "Mật khẩu",
                 "password_confirmation": "Nhập lại mật khẩu",
+                "forgot password": "Quên mật khẩu",
                 "sign in to start your session": "Đăng nhập để bắt đầu phiên làm việc",
                 "input your email to get new password": "Nhập email để nhận mật khẩu ",
                 "remember me": "Lưu mật khẩu",
