@@ -19,7 +19,6 @@ class CourseTransformer extends Resource
     public function toArray($request)
     {
         $user = Auth::user();
-        $carbonUtil = app(OlavuiCarbonUtils::class);
         $data = [
             'id' => $this->id,
             'name' => $this->name,
@@ -38,6 +37,7 @@ class CourseTransformer extends Resource
             'teacher' => $this->teacher,
             'tuition' => $this->tuition,
             'status' => $this->status,
+            'content' => $this->content,
             'created_by' => $this->created_by ? optional($this->user)->username : null,
             'created_at' => optional($this->created_at)->format('d-m-Y'),
             'updated_at' => optional($this->updated_at)->format('d-m-Y'),

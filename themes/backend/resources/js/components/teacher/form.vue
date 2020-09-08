@@ -388,16 +388,16 @@
                 ],
                 listGender: [
                     {
-                        value: this.$t('teacher.label.male'),
-                        label: this.$t('teacher.label.male')
+                        value: 'male',
+                        label: this.$t('student.label.male')
                     },
                     {
-                        value: this.$t('teacher.label.female'),
-                        label: this.$t('teacher.label.female')
+                        value: 'female',
+                        label: this.$t('student.label.female')
                     },
                     {
-                        value: this.$t('teacher.label.other'),
-                        label: this.$t('teacher.label.other')
+                        value: 'other',
+                        label: this.$t('student.label.other')
                     }
                 ],
                 provinces: [],

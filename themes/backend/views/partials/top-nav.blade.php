@@ -26,7 +26,7 @@
                 <ul class="dropdown-menu">
                     <!-- User image -->
                     <li class="user-header bg-light-blue">
-                        <img src="http://i.pravatar.cc/300" class="img-circle" alt="User Image" />
+                        <img class="img-circle" alt="User Image" />
                         <p>
                             {{ $currentUser->name }}
                         </p>

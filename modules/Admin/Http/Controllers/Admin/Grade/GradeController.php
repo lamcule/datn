@@ -20,7 +20,6 @@ class GradeController extends Controller
      */
     public function index()
     {
-        //$grades = $this->grade->all();
 
         return view('admin::grades.index');
     }

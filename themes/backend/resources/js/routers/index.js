@@ -11,6 +11,8 @@ import ReportsRouters from './report'
 import ReviewRouters from './review'
 import StudentImportRouters from './studentimport'
 import TeacherRouters from './teacher'
+import GradeRouters from './grade'
+import BannerRouters from './banner'
 
 Vue.use(VueRouter)
 const currentLocale = window.MonCMS.currentLocale
@@ -28,7 +30,9 @@ const router = new VueRouter({
         ...ReportsRouters,
         ...ReviewRouters,
         ...StudentImportRouters,
-        ...TeacherRouters
+        ...TeacherRouters,
+        ...GradeRouters,
+        ...BannerRouters,
 
     ]
 })
@@ -41,20 +45,20 @@ function makeBaseUrl() {
     // return '';
 }
 
-// router.beforeEach((to, from, next) => {
-//     const routeName = to.name
-//     if (_.find(permissions, function (permission) {
-//         return permission.name === routeName
-//     })) {
-//
-//         next()
-//     } else {
-//         Message({
-//             type: 'error',
-//             message: window.MonCMS.permissionDenied
-//         })
-//         next(false)
-//     }
-// })
+router.beforeEach((to, from, next) => {
+    const routeName = to.name
+    if (_.find(permissions, function (permission) {
+        return permission.name === routeName
+    })) {
+
+        next()
+    } else {
+        Message({
+            type: 'error',
+            message: window.MonCMS.permissionDenied
+        })
+        next(false)
+    }
+})
 
 export default router

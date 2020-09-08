@@ -202,6 +202,11 @@
                             :label="$t('teacher.label.gender')"
                             sortable="custom"
                         >
+                            <template slot-scope="props">
+                                <span v-if="props.row.profile.gender == 'male'"> {{ $t('teacher.label.male') }}</span>
+                                <span v-else-if="props.row.profile.gender == 'female'"> {{ $t('teacher.label.female') }}</span>
+                                <span v-else> {{ $t('teacher.label.other') }}</span>
+                            </template>
                         </el-table-column>
                         <el-table-column
                             prop="status"
@@ -285,16 +290,16 @@
                 ],
                 listGender: [
                     {
-                        value: 'Male',
-                        label: 'Male',
+                        value: 'male',
+                        label: this.$t('student.label.male')
                     },
                     {
-                        value: 'Female',
-                        label: 'Female',
+                        value: 'female',
+                        label: this.$t('student.label.female')
                     },
                     {
-                        value: 'Other',
-                        label: 'Other',
+                        value: 'other',
+                        label: this.$t('student.label.other')
                     }
                 ],
                 uploadUrl: route('api.teacher.import'),

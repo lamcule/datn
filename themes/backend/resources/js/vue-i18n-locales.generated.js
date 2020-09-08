@@ -189,16 +189,16 @@ export default {
             }
         },
         "sidebar": {
-            "system administration": "Admin manager",
+            "system administration": "Admin Management",
             "roles and permission": "Roles and Permissions",
             "permissions": "Permissions",
             "roles": "Roles",
             "users": "Admin",
             "qrcode": "QRCode",
             "checkinout": "Check-in/out",
-            "media": "Document Manager",
-            "student": "Participant Manager",
-            "course": "Activity Manager",
+            "media": "Document Management",
+            "student": "Participant Management",
+            "course": "Activity Management",
             "list course": "List course",
             "create course": "Create course",
             "create grade": "Create class",
@@ -211,7 +211,10 @@ export default {
             "report studyent activity": "Course Report",
             "report student lesson": "Course Feedback",
             "report review history": "Personal assessment",
-            "report course activity": "Activity Report"
+            "report course activity": "Activity Report",
+            "manage website": "Manage website",
+            "banner": "Banner Management ",
+            "news": "News Management",
         },
         "grade": {
             "label": {
@@ -613,7 +616,35 @@ export default {
                 "add permissions success": "Assign permission successful",
                 "remove permissions success": "Remove permission successful"
             }
-        }
+        },
+        "banner": {
+            "label": {
+                "id": "Banner ID",
+                "title": "Title",
+                "image": "Image",
+                "link": "Link",
+                "position": "Position",
+                "created_at": "Creation time",
+                "updated_at": "Update time",
+                "create_banner": "Add new activity",
+                "update_banner": "Update activity",
+                "status": "Status",
+                "manage_banner": "Banner manager",
+            },
+            "tabs": {
+
+            },
+            "message": {
+                "create success": "Add new banner success.",
+                "update success": "Update success.",
+                "delete success": "Delete success.",
+                "change status success": "Update status success"
+            },
+            "box": {
+                "banner information": "Banner information",
+                "banner detail": "Detail Banner"
+            }
+        },
     },
     "vi": {
         "student": {
@@ -654,7 +685,9 @@ export default {
                 "phoenix_id": "Xã/Phường",
                 "male": "Nam",
                 "female": "Nữ",
-                "other": "Khác"
+                "other": "Khác",
+                "grade": "Lớp học",
+                "grade joined": "Lớp học tham gia",
             },
             "tabs": {
                 "data": "Thông tin",
@@ -671,7 +704,8 @@ export default {
             "box": {
                 "personal information": "Thông tin cá nhân",
                 "work information": "Thông tin công việc",
-                "categories": "Phân loại"
+                "categories": "Phân loại",
+                "grade": "Lớp học",
             }
         },
         "teacher": {
@@ -823,7 +857,10 @@ export default {
             "report student": "Học viên",
             "review": "Đánh giá khóa học",
             "studentimport": "Upload Học viên",
-            "report grades": "Tổng quan báo cáo"
+            "report grades": "Tổng quan báo cáo",
+            "manage website": "Quản lý website",
+            "banner": "Quản lý banner",
+            "news": "Quản lý bài viết",
         },
         "grade": {
             "label": {
@@ -837,7 +874,7 @@ export default {
                 "update_grade": "Cập nhật",
                 "status": "Trạng thái",
                 "teacher": "Giáo viên",
-                "manage_grade": "Quản lý khóa học",
+                "manage_grade": "Quản lý lớp học",
                 "place": "Địa điểm",
                 "number_of_lesson": "Số buổi"
             },
@@ -1165,6 +1202,34 @@ export default {
                 "add permissions success": "Thêm quyền thành công",
                 "remove permissions success": "Hủy bỏ quyền thành công"
             }
-        }
+        },
+        "banner": {
+            "label": {
+                "id": "Banner ID",
+                "title": "Tiêu đề",
+                "image": "Ảnh",
+                "link": "Đường dẫn",
+                "position": "Vị trí",
+                "created_at": "Thời gian tạo",
+                "updated_at": "Thời gian update",
+                "create_banner": "Tạo mới banner",
+                "update_banner": "Cập nhật banner",
+                "status": "Trạng thái",
+                "manage_banner": "Quản lý banner",
+            },
+            "tabs": {
+
+            },
+            "message": {
+                "create success": "Thêm mới banner thành công.",
+                "update success": "Cập nhật thành công.",
+                "delete success": "Xóa thành công.",
+                "change status success": "Cập nhật trạng thái thành công"
+            },
+           "box": {
+                "banner information": "Thong tin banner",
+                "banner detail": "Chi tiet Banner"
+            }
+        },
     }
 }

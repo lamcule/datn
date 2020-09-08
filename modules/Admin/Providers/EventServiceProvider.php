@@ -7,6 +7,7 @@ use Modules\Admin\Events\GradeCreated;
 use Modules\Admin\Events\Handlers\GenerateLesson;
 use Modules\Admin\Events\Sidebar\Admin\CourseSidebarExtender;
 use Modules\Admin\Events\Sidebar\Admin\GradeSidebarExtender;
+use Modules\Admin\Events\Sidebar\Admin\ManageWebsiteSidebarExtender;
 use Modules\Admin\Events\Sidebar\Admin\MediaSidebarExtender;
 use Modules\Admin\Events\Sidebar\Admin\ReportSidebarExtender;
 use Modules\Admin\Events\Sidebar\Admin\ReviewSidebarExtender;
@@ -23,13 +24,14 @@ class EventServiceProvider extends ServiceProvider
         BuildingSidebar::class => [
             UserSidebarExtender::class,
             MediaSidebarExtender::class,
+            ManageWebsiteSidebarExtender::class,
             StudentSidebarExtender::class,
+            TeacherSidebarExtender::class,
             CourseSidebarExtender::class,
             GradeSidebarExtender::class,
             ReportSidebarExtender::class,
             ReviewSidebarExtender::class,
             StudentImportSidebarExtender::class,
-            TeacherSidebarExtender::class,
         ],
         GradeCreated::class => [
             GenerateLesson::class

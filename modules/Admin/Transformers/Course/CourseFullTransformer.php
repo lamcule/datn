@@ -35,6 +35,7 @@ class CourseFullTransformer extends Resource
             'teacher' => $this->teacher,
             'tuition' => $this->tuition,
             'status' => $this->status,
+            'content' => $this->content,
             'created_by' => $this->created_by ? optional($this->user)->id : null,
             'created_at' => strtotime($this->created_at),
             'updated_at' => strtotime($this->updated_at),

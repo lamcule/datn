@@ -312,42 +312,41 @@
 </template>
 
 <script>
-    // import axios from 'axios'
-    import request from "../utils/request";
+import request from "../utils/request"
 
-    export default {
-        data() {
-            return {
-                courses: [],
-                teachers: [],
-            }
-        },
-        mounted() {
-            this.fetchData()
-        },
-        methods: {
-            getCourse() {
-                request.get('/active-course')
-                    .then((response) => {
-                        this.courses = response.data.data
-                    })
-            },
-            getTeacher() {
-                request.get('/active-teacher')
-                    .then((response) => {
-                        this.teachers = response.data.data
-                    })
-            },
-            fetchData() {
-                this.getCourse()
-                this.getTeacher()
-            },
+export default {
+    data() {
+        return {
+            courses: [],
+            teachers: [],
         }
+    },
+    mounted() {
+        this.fetchData()
+    },
+    methods: {
+        getCourse() {
+            request.get('/active-course')
+                .then((response) => {
+                    this.courses = response.data.data
+                })
+        },
+        getTeacher() {
+            request.get('/active-teacher')
+                .then((response) => {
+                    this.teachers = response.data.data
+                })
+        },
+        fetchData() {
+            this.getCourse()
+            this.getTeacher()
+        },
     }
+}
 </script>
 
 <style>
-    .content {
-        padding-top: 80px;
-    }
+.content {
+    padding-top: 80px;
+}
 </style>

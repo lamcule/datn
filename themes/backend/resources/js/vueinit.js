@@ -22,6 +22,7 @@ import MediaManager from './components/media/js/components/MediaManager';
 
 import 'fullcalendar/dist/fullcalendar.css'
 import FullCalendar from 'vue-full-calendar'
+import Ckeditor from '@ckeditor/ckeditor5-vue';
 
 Vue.use(FullCalendar)
 
@@ -36,6 +37,7 @@ Vue.use(require('vue-shortkey'), {prevent: ['input', 'textarea']});
 
 Vue.use(VueEvents);
 Vue.use(VueSimplemde);
+Vue.use(Ckeditor);
 require('./mixins');
 
 Vue.component('ReloadDeleteButton', ReloadDeleteComponent);

@@ -145,3 +145,4 @@ require_once 'api/dashboard.php';
 require_once 'api/review.php';
 require_once 'api/studentimport.php';
 require_once 'api/question.php';
+require_once 'api/banner.php';

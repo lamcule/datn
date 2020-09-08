@@ -99,7 +99,6 @@
 {!! \Theme::js('vendor/jquery-ui/ui/core.js') !!}
 {!! \Theme::js('vendor/admin-lte/dist/js/adminlte.min.js') !!}
 {!! \Theme::js('vendor/admin-lte/dist/js/demo.js') !!}
-{!! \Theme::js('vendor/tinymce/tinymce4.7.5/tinymce.min.js') !!}
 
 {!! \Theme::js('js/app.js') !!}
 @section('scripts')

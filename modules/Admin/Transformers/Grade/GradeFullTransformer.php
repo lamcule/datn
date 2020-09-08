@@ -3,6 +3,7 @@
 namespace Modules\Admin\Transformers\Grade;
 
 use Illuminate\Http\Resources\Json\Resource;
+use Modules\Admin\Transformers\Teacher\TeacherTransformer;
 
 class GradeFullTransformer extends Resource
 {
@@ -18,7 +19,7 @@ class GradeFullTransformer extends Resource
             'id' => $this->id,
             'name' => $this->name,
             'course_id' => $this->course_id,
-            'course' => $this->course->name,
+            'course' => $this->course ? $this->course->name: '',
             'number_of_lesson' => $this->number_of_lesson,
             'place' => $this->place,
             'teacher' => $this->teacher,
@@ -30,8 +31,6 @@ class GradeFullTransformer extends Resource
             'hours' => $this->hours,
             'start_time' => $this->start_time,
             'end_time' => $this->end_time,
-            'teacher_type' => $this->teacher_type,
-            'teacher_company' => $this->teacher_company,
             'created_at' => strtotime($this->created_at),
             'updated_at' => strtotime($this->updated_at)
         ];

@@ -91,6 +91,7 @@ class Course extends Model
         'has_notification',
         'has_email',
         'code',
+        'content',
     ];
 
     public function user()

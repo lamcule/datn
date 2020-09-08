@@ -39,5 +39,8 @@ return [
     'report student' => 'Học viên',
     'review' => 'Đánh giá khóa học',
     'studentimport' => 'Upload Học viên',
-    'report grades' => 'Tổng quan báo cáo'
+    'report grades' => 'Tổng quan báo cáo',
+    'manage website' => 'Quản lý website',
+    'banner' => 'Banner',
+    'news' => 'Bài viết',
 ];

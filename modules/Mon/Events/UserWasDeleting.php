@@ -48,6 +48,6 @@ class UserWasDeleting implements StoringMedia
      */
     public function getSubmissionData()
     {
-        return $this->data;
+//        return $this->data;
     }
 }

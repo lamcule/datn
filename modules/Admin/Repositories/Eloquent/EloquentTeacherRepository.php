@@ -88,7 +88,7 @@ class EloquentTeacherRepository extends BaseRepository implements TeacherReposit
      */
     public function serverPagingFor(Request $request, $relations = null)
     {
-        $query = $this->newQueryBuilder()->withTrashed();
+        $query = $this->newQueryBuilder();
         $query->where('type', 'teacher');
         if ($relations) {
             $query = $query->with($relations);
@@ -119,37 +119,10 @@ class EloquentTeacherRepository extends BaseRepository implements TeacherReposit
             $email = $request->get('email');
             $query->where('email', 'LIKE', "%{$email}");
         }
-        if ($request->get('province_id') !== null) {
-            $province_id = $request->get('province_id');
-            $query->whereHas('profile', function ($query) use ($province_id) {
-                $query->where('province_id', $province_id);
-            });
-        }
-        if ($request->get('categories') !== null) {
-            $categories = $request->get('categories');
-            $categories = explode('/', $categories);
-            $query->whereHas('profile', function ($query) use ($categories) {
-                foreach ($categories as $keyword) {
-                    $query->where('categories', 'LIKE', "%{$keyword}%");
-                }
-            });
-        }
-        if ($request->get('personal_categories') !== null) {
-            $personal_categories = $request->get('personal_categories');
-            $query->whereHas('profile', function ($query) use ($personal_categories) {
-                $query->where('personal_categories', 'LIKE', "%{$personal_categories}%");
-            });
-        }
         if ($request->get('gender') !== null) {
             $gender = $request->get('gender');
             $query->whereHas('profile', function ($query) use ($gender) {
-                $query->where('gender', 'LIKE', "%{$gender}%");
-            });
-        }
-        if ($request->get('company') !== null) {
-            $company = $request->get('company');
-            $query->whereHas('profile', function ($query) use ($company) {
-                $query->where('company', 'LIKE', "%{$company}%");
+                $query->where('gender', $gender);
             });
         }
         if ($request->get('order_by') !== null && $request->get('order') !== 'null') {

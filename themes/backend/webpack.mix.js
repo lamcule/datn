@@ -1,16 +1,16 @@
 const mix = require('laravel-mix');
 const WebpackShellPlugin = require('webpack-shell-plugin');
 const themeInfo = require('./theme.json');
-mix.js(['resources/js/vueinit.js'], 'assets/js/vueinit.js');
+mix.js(['resources/js/vueinit.js'], 'assets/js/app.js');
 // mix.copy('resources/js/library/jquery.min.js', 'assets/js/jquery.min.js');
 
 mix.sass('resources/scss/backend.scss', 'assets/css/backend.css');
 
 mix.styles(['resources/css/custom.css', 'assets/css/backend.css'], 'assets/css/app.css');
 
-mix.scripts([
-    'assets/js/vueinit.js',
-], 'assets/js/app.js');
+// mix.scripts([
+//     'assets/js/vueinit.js',
+// ], 'assets/js/app.js');
 // mix.copyDirectory('resources/images', 'assets/images');
 
 /**

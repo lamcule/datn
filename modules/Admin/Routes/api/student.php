@@ -50,3 +50,8 @@ Route::middleware('auth:api')->prefix('students')->group(function (){
 
     ]);
 });
+
+Route::post('/contact', [
+    'as' => 'api.student.contact',
+    'uses' => 'Student\StudentController@saveContact',
+]);

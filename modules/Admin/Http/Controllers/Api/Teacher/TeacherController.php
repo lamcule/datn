@@ -54,7 +54,7 @@ class TeacherController extends ApiController
 
     public function find(User $user)
     {
-        return new  TeacherFullTransformer($user);
+        return new TeacherFullTransformer($user);
     }
 
     public function update(User $user, UpdateTeacherRequest $request)

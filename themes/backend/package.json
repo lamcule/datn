@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@chenfengyuan/vue-qrcode": "^1.0.1",
+    "@ckeditor/ckeditor5-build-classic": "^22.0.0",
+    "@ckeditor/ckeditor5-vue": "^1.0.2",
     "@johmun/vue-tags-input": "^2.0.1",
     "admin-lte": "^2.4.18",
     "animate.css": ">=3.7",
@@ -22,6 +24,7 @@
     "bootstrap": "~3.3.4",
     "chart.js": "^2.9.1",
     "codemirror": "^5.42.2",
+    "cross-env": "^7.0.2",
     "datatables.net": "^1.10.19",
     "datatables.net-bs": "^1.10.19",
     "element-ui": "^2.12.0",

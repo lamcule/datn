@@ -40,4 +40,7 @@ return [
     'report student lesson' => 'Course Feedback',
     'report review history' => 'Personal assessment',
     'report course activity' => 'Activity Report',
+    'manage website' => 'Website Management',
+    'banner' => 'Banner',
+    'news' => 'News',
 ];

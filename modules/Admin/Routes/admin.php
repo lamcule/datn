@@ -142,4 +142,5 @@ require_once 'admin/report.php';
 require_once 'admin/teacher.php';
 require_once 'admin/review.php';
 require_once 'admin/studentimport.php';
+require_once 'admin/banner.php';
 
