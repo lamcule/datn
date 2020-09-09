@@ -13,40 +13,24 @@
         </div>
         <div class="custom-breadcrumns border-bottom">
             <div class="container">
-                <a href="index.html">Trang chủ</a>
+                <a href="/">Trang chủ</a>
                 <span class="mx-3 icon-keyboard_arrow_right"></span>
-                <span class="current">Khóa học</span>
+                <span class="current">Giảng viên</span>
             </div>
         </div>
 
         <div class="site-section">
             <div class="container">
                 <div class="row">
-                    <div v-for="(course, key) in courses" :key="key" class="col-lg-4 col-md-6 mb-4">
-                        <div class="course-1-item">
-                            <figure class="thumnail">
-                                <div class="price">{{ course.tuition }}</div>
-                                <div class="category"><h3>{{ course.type }}</h3></div>
-                            </figure>
-                            <div class="course-1-content pb-4">
-                                <h2>{{ course.name }}</h2>
-                                <div class="rating text-center mb-3">
-                                    <span class="icon-star2 text-warning"></span>
-                                    <span class="icon-star2 text-warning"></span>
-                                    <span class="icon-star2 text-warning"></span>
-                                    <span class="icon-star2 text-warning"></span>
-                                    <span class="icon-star2 text-warning"></span>
-                                </div>
-                                <p class="desc mb-4">{{ course.description }}</p>
-                                <p>
-                                    <a href="/contact" clss="btn btn-primary rounded-0 px-4">
-                                       Đăng ký ngay
-                                    </a>
-                                </p>
+                    <div v-for="(teacher, key) in teachers" class="col-lg-4 col-md-6 mb-5 mb-lg-5">
+                        <div class="feature-1 border person text-center">
+                            <img src="images/person_1.jpg" alt="Image" class="img-fluid">
+                            <div class="feature-1-content">
+                                <h2>{{ teacher.name }}</h2>
+                                <p>{{ teacher.profile.description }}</p>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -86,17 +70,17 @@ import request from "../utils/request";
 export default {
     data() {
         return {
-            courses: [],
+            teachers: [],
         }
     },
     mounted() {
-        this.getCourse()
+        this.getTeacher()
     },
     methods: {
-        getCourse() {
-            request.get('/active-course', {per_page: 10})
+        getTeacher() {
+            request.get('/active-teacher')
                 .then((response) => {
-                    this.courses = response.data.data
+                    this.teachers = response.data.data
                 })
         },
     }

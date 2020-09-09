@@ -326,7 +326,7 @@ export default {
     },
     methods: {
         getCourse() {
-            request.get('/active-course')
+            request.get('/active-course', {per_page: 3})
                 .then((response) => {
                     this.courses = response.data.data
                 })

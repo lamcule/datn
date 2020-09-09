@@ -59,6 +59,20 @@ class GuestController extends WebController
     {
         return $this->view('contact');
     }
+    /**
+     * Display a listing of the resource.
+     * @return Response
+     */
+    public function teacher()
+    {
+        return $this->view('teacher');
+    }
+
+    public function checkin(Lesson $lesson)
+    {
+        return $this->view('checkin', compact('lesson' ));
+    }
+
     public function handleCheckin(Request $request,Lesson $lesson)
     {
         $username = $request->get('username');
@@ -91,14 +105,10 @@ class GuestController extends WebController
     }
     public function registGrade(Grade $grade)
     {
-
-        $this->seo()->setTitle('Regist course');
         return $this->view('regist_grade', compact('grade' ));
     }
     public function checkout(Lesson $lesson)
     {
-
-        $this->seo()->setTitle('Checkout');
         return $this->view('checkout', compact('lesson' ));
     }
     public function handleCheckout(Request $request,Lesson $lesson)
@@ -129,7 +139,6 @@ class GuestController extends WebController
     }
     public function review()
     {
-        $this->seo()->setTitle('Review');
         return $this->view('review');
     }
 

@@ -7,5 +7,5 @@ use Modules\Mon\Repositories\BaseRepository;
 
 interface CourseRepository extends BaseRepository
 {
-    public function getActiveCourse();
+    public function getActiveCourse(Request $request);
 }

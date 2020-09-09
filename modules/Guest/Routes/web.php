@@ -14,6 +14,8 @@ Route::get('/', 'GuestController@index')->name('guest.home');
 Route::get('/course', 'GuestController@course')->name('guest.course');
 Route::get('/about-us', 'GuestController@about')->name('guest.about');
 Route::get('/contact', 'GuestController@contact')->name('guest.contact');
+Route::get('/teacher', 'GuestController@teacher')->name('guest.teacher');
+
 Route::get('/checkin/{lesson}', 'GuestController@checkin')->name('checkin');
 Route::post('/checkin/{lesson}', 'GuestController@handleCheckin')->name('checkin.submit');
 //

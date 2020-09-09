@@ -1,14 +1,14 @@
 <?php
 
-namespace Modules\Admin\Http\Controllers\Admin\Student;
+namespace Modules\Admin\Http\Controllers\Admin\StudentGuest;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Modules\Admin\Repositories\StudentRepository;
+use Modules\Admin\Repositories\StudentGuestRepository;
 use Illuminate\Routing\Controller;
 use Modules\Mon\Entities\User;
 
-class StudentController extends Controller
+class StudentGuestController extends Controller
 {
 
 
@@ -19,9 +19,9 @@ class StudentController extends Controller
      */
     public function index()
     {
-        //$students = $this->student->all();
+        //$studentguests = $this->studentguest->all();
 
-        return view('admin::students.index' );
+        return view('admin::studentguests.index');
     }
 
     /**
@@ -31,7 +31,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        return view('admin::students.create');
+        return view('admin::studentguests.create');
     }
 
 
@@ -39,12 +39,12 @@ class StudentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  User $user
+     * @param  User $studentguest
      * @return Response
      */
-    public function edit(User $user)
+    public function edit(User $studentguest)
     {
-        return view('admin::students.edit', compact('user'));
+        return view('admin::studentguests.edit', compact('studentguest'));
     }
 
 

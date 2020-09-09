@@ -4,6 +4,7 @@ namespace Modules\Admin\Http\Controllers\Api\Student;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Validator;
 use Modules\Admin\Transformers\Student\StudentFullTransformer;
 use Modules\Admin\Transformers\Student\StudentTransformer;
 use Modules\Admin\Transformers\Student\UserFullTransformer;
@@ -83,7 +84,36 @@ class StudentController extends ApiController
     public function import(Request $request)
     {
 
+    }
 
-
+    public function saveContact(Request $request)
+    {
+        $rules = [
+            'first_name' => 'required|max:100',
+            'last_name' => 'required|max:100',
+            'email' => 'required|email',
+            'phone' => 'required',
+        ];
+        $messages = [
+            'first_name.required' => 'Vui lòng nhập họ.',
+            'first_name.max' => 'Vui lòng nhập họ hợp lệ',
+            'last_name.required' => 'Vui lòng nhập tên.',
+            'last_name.max' => 'Vui lòng nhập tên hợp lệ.',
+            'email.required' => 'Vui lòng nhập email.',
+            'email.email' => 'Vui lòng nhập email hợp lệ.',
+            'phone.required' => 'Vui lòng nhập số điện thoại.',
+        ];
+        $validatedData = Validator::make($request->all(), $rules, $messages);
+        if ($validatedData->fails()) {
+            return response()->json([
+                'error' => true,
+                'message' => $validatedData->errors(),
+            ]);
+        }
+        $this->studentRepository->create($request->all());
+        return response()->json([
+            'error' => false,
+            'message' => trans('backend::student.message.create success'),
+        ]);
     }
 }

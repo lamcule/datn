@@ -34,15 +34,6 @@ class ManageWebsiteSidebarExtender extends AbstractAdminSidebar
                         $this->auth->hasAccess('admin.banner.index')
                     );
                 });
-//                $item->item(trans('backend::sidebar.news'), function (Item $item) {
-//
-//                    $item->weight(0);
-//
-//                    $item->route('admin.news.index');
-//                    $item->authorize(
-//                        $this->auth->hasAccess('admin.news.index')
-//                    );
-//                });
 
             });
         });

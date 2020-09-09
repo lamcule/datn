@@ -24,17 +24,10 @@ class CourseTransformer extends Resource
             'name' => $this->name,
             'type' => $this->type,
             'description' => $this->description,
-            'area' => $this->area,
-            'role' => $this->role,
-            'frequency' => $this->frequency,
-            'project' => $this->project,
             'has_notification' => $this->has_notification,
             'has_email' => $this->has_email,
             'code' => $this->code,
 
-            'scale' => $this->scale,
-            'object' => $this->object,
-            'teacher' => $this->teacher,
             'tuition' => $this->tuition,
             'status' => $this->status,
             'content' => $this->content,
@@ -44,18 +37,9 @@ class CourseTransformer extends Resource
             'urls' => [
                 'delete_url' => route('api.course.destroy', $this->id),
             ],
-//            'actions' => $this->hasAction($user),
-//            'preview_url' => $this->getUrlByLocale(current_locale())
             'view_url' => route('admin.course.view', $this->id),
 
         ];
-
-//        foreach (supported_locales() as $locale => $supportedLocale) {
-//            $data[$locale] = [];
-//            foreach ($this->translatedAttributes as $translatedAttribute) {
-//                $data[$locale][$translatedAttribute] = $this->translateOrNew($locale)->$translatedAttribute;
-//            }
-//        }
 
         return $data;
     }

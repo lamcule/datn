@@ -29,6 +29,25 @@ class StudentSidebarExtender extends AbstractAdminSidebar
                     $this->auth->hasAccess('admin.student.index')
                 );
 
+                $item->item(trans('backend::sidebar.student'), function (Item $item) {
+
+                    $item->weight(0);
+
+                    $item->route('admin.student.index');
+                    $item->authorize(
+                        $this->auth->hasAccess('admin.student.index')
+                    );
+                });
+
+                $item->item(trans('backend::sidebar.student'), function (Item $item) {
+
+                    $item->weight(1);
+
+                    $item->route('admin.student.index');
+                    $item->authorize(
+                        $this->auth->hasAccess('admin.student.index')
+                    );
+                });
 
 
 

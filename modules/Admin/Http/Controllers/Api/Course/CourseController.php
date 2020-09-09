@@ -88,8 +88,8 @@ class CourseController extends ApiController
         return response()->json($province);
     }
 
-    public function getActiveCourse()
+    public function getActiveCourse(Request $request)
     {
-        return CourseTransformer::collection($this->courseRepository->getActiveCourse());
+        return CourseTransformer::collection($this->courseRepository->getActiveCourse($request));
     }
 }

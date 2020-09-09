@@ -33,7 +33,9 @@ class EloquentStudentRepository extends BaseRepository implements StudentReposit
         $user = $this->model->create($data);
 
         // reasign username
-        $data['username'] = $this->getUsernameFromId($user->id);
+        if ($data["type"] == "student") {
+            $data['username'] = $this->getUsernameFromId($user->id);
+        }
         $user->update($data);
 
         // create profile

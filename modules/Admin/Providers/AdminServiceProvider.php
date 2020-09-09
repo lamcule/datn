@@ -265,7 +265,15 @@ class AdminServiceProvider extends ServiceProvider
                 return $repository;
             }
         );
+        $this->app->bind(
+            'Modules\Admin\Repositories\StudentGuestRepository',
+            function () {
+                $repository = new \Modules\Admin\Repositories\Eloquent\EloquentStudentGuestRepository(new \Modules\Mon\Entities\StudentGuest());
+                return $repository;
+            }
+        );
 // add bindings
+
 
 
 

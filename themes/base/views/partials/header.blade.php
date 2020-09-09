@@ -15,10 +15,6 @@
                     <a href="#" class="small mr-3"><span class="icon-phone2 mr-2"></span> 10 20 123 456</a>
                     <a href="#" class="small mr-3"><span class="icon-envelope-o mr-2"></span> info@mydomain.com</a>
                 </div>
-                <div class="col-lg-3 text-right">
-                    <a href="login.html" class="small mr-3"><span class="icon-unlock-alt"></span> Đăng nhâp</a>
-                    <a href="register.html" class="small btn btn-primary px-4 py-2 rounded-0"><span class="icon-users"></span> Đăng ký</a>
-                </div>
             </div>
         </div>
     </div>
@@ -40,7 +36,7 @@
                             <li class="has-children">
                                 <a href="{{ route("guest.about") }}" class="nav-link text-left">Về chúng tôi</a>
                                 <ul class="dropdown">
-                                    <li><a href="teachers.html">Đội ngũ giảng viên</a></li>
+                                    <li><a href="{{ route("guest.teacher") }}">Đội ngũ giảng viên</a></li>
                                     <li><a href={{ route("guest.about") }}>Về trung tâm</a></li>
                                 </ul>
                             </li>
@@ -53,7 +49,7 @@
                             <li>
                                 <a href="{{ route("guest.contact") }}" class="nav-link text-left">Liên hệ</a>
                             </li>
-                        </ul>                                                                                                                                                                                                                                                                                          </ul>
+                        </ul>
                     </nav>
 
                 </div>

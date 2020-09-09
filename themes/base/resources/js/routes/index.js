@@ -2,6 +2,7 @@ import Home from '../components/home'
 import Course from '../components/course'
 import About from '../components/about'
 import Contact from '../components/contact'
+import Teacher from '../components/teacher'
 
 export default [
     {
@@ -23,6 +24,11 @@ export default [
         path: '/contact',
         name: 'contact',
         component: Contact
+    },
+    {
+        path: '/teacher',
+        name: 'teacher',
+        component: Teacher
     },
 
 ]

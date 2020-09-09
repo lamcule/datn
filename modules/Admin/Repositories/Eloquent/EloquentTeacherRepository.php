@@ -297,7 +297,7 @@ class EloquentTeacherRepository extends BaseRepository implements TeacherReposit
         $query->where('type', 'teacher')
             ->where('status', 'active')
             ->orderBy('created_at', 'desc')
-            ->limit(10);
+            ->limit(5);
         return $query->get();
     }
 }
