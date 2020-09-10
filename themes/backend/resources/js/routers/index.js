@@ -45,20 +45,20 @@ function makeBaseUrl() {
     // return '';
 }
 
-router.beforeEach((to, from, next) => {
-    const routeName = to.name
-    if (_.find(permissions, function (permission) {
-        return permission.name === routeName
-    })) {
-
-        next()
-    } else {
-        Message({
-            type: 'error',
-            message: window.MonCMS.permissionDenied
-        })
-        next(false)
-    }
-})
+// router.beforeEach((to, from, next) => {
+//     const routeName = to.name
+//     if (_.find(permissions, function (permission) {
+//         return permission.name === routeName
+//     })) {
+//
+//         next()
+//     } else {
+//         Message({
+//             type: 'error',
+//             message: window.MonCMS.permissionDenied
+//         })
+//         next(false)
+//     }
+// })
 
 export default router

@@ -5,10 +5,13 @@ namespace Modules\Admin\Http\Controllers\Api\Student;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
+use Mail;
 use Modules\Admin\Transformers\Student\StudentFullTransformer;
 use Modules\Admin\Transformers\Student\StudentTransformer;
 use Modules\Admin\Transformers\Student\UserFullTransformer;
 use Modules\Admin\Transformers\Student\UserTransformer;
+use Modules\Guest\Emails\MailToStudent;
+use Modules\Guest\Jobs\SendMail;
 use Modules\Mon\Entities\Student;
 use Modules\Admin\Http\Requests\Student\CreateStudentRequest;
 use Modules\Admin\Http\Requests\Student\UpdateStudentRequest;
@@ -88,32 +91,49 @@ class StudentController extends ApiController
 
     public function saveContact(Request $request)
     {
-        $rules = [
-            'first_name' => 'required|max:100',
-            'last_name' => 'required|max:100',
-            'email' => 'required|email',
-            'phone' => 'required',
-        ];
-        $messages = [
-            'first_name.required' => 'Vui lòng nhập họ.',
-            'first_name.max' => 'Vui lòng nhập họ hợp lệ',
-            'last_name.required' => 'Vui lòng nhập tên.',
-            'last_name.max' => 'Vui lòng nhập tên hợp lệ.',
-            'email.required' => 'Vui lòng nhập email.',
-            'email.email' => 'Vui lòng nhập email hợp lệ.',
-            'phone.required' => 'Vui lòng nhập số điện thoại.',
-        ];
-        $validatedData = Validator::make($request->all(), $rules, $messages);
-        if ($validatedData->fails()) {
+        try {
+            $rules = [
+                'first_name' => 'required|max:100',
+                'last_name' => 'required|max:100',
+                'email' => 'required|email|unique:users,email',
+                'phone' => 'required',
+            ];
+            $messages = [
+                'first_name.required' => 'Vui lòng nhập họ.',
+                'first_name.max' => 'Vui lòng nhập họ hợp lệ',
+                'last_name.required' => 'Vui lòng nhập tên.',
+                'last_name.max' => 'Vui lòng nhập tên hợp lệ.',
+                'email.required' => 'Vui lòng nhập email.',
+                'email.email' => 'Vui lòng nhập email hợp lệ.',
+                'email.unique' => 'Email đã được đăng ký',
+                'phone.required' => 'Vui lòng nhập số điện thoại.',
+            ];
+            $validatedData = Validator::make($request->all(), $rules, $messages);
+            if ($validatedData->fails()) {
+                return response()->json([
+                    'error' => true,
+                    'message' => $validatedData->errors(),
+                ]);
+            }
+            $data = $request->all();
+            $data['status'] = 'inactive';
+
+            SendMail::dispatch($data["email"]);
+            $this->studentRepository->create($data);
+
+
+
+            return response()->json([
+                'error' => false,
+                'message' => trans('backend::student.message.create success'),
+            ]);
+        } catch (\Exception $exception) {
             return response()->json([
                 'error' => true,
-                'message' => $validatedData->errors(),
+                'message' => $exception->getMessage(),
             ]);
         }
-        $this->studentRepository->create($request->all());
-        return response()->json([
-            'error' => false,
-            'message' => trans('backend::student.message.create success'),
-        ]);
+
+
     }
 }

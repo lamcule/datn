@@ -20,22 +20,21 @@ class EloquentStudentRepository extends BaseRepository implements StudentReposit
 {
     public function getUsernameFromId($id)
     {
-        return 'SVF' . str_pad($id, 6, "0", STR_PAD_LEFT);
+        return 'SV' . str_pad($id, 6, "0", STR_PAD_LEFT);
     }
 
     public function create($data)
     {
         $data['username'] = $data['email'];
-        $data['password'] = '123456svf';
-        $data['name'] =$data['last_name'] . ' ' . $data['first_name'] ;
+        $data['password'] = \Hash::make(env('STUDENT_PASSWORD'));
+        $data['name'] = $data['last_name'] . ' ' . $data['first_name'] ;
         $data['full_name'] = $data['last_name'] . ' ' . $data['first_name'] ;
         // create user
         $user = $this->model->create($data);
 
         // reasign username
-        if ($data["type"] == "student") {
-            $data['username'] = $this->getUsernameFromId($user->id);
-        }
+        $data['username'] = $this->getUsernameFromId($user->id);
+
         $user->update($data);
 
         // create profile
@@ -50,8 +49,11 @@ class EloquentStudentRepository extends BaseRepository implements StudentReposit
 
     public function update($model, $data)
     {
-        $data['name'] =$data['last_name'] . ' ' . $data['first_name'] ;
+        $data['name'] = $data['last_name'] . ' ' . $data['first_name'] ;
         $data['full_name'] = $data['last_name'] . ' ' . $data['first_name'] ;
+        if ($data['type'] == 'guest' && $data['status'] == 'active') {
+            $data['type'] = 'student';
+        }
         $model->update($data);
 
         if (isset($data['grade_ids'])) {
@@ -89,8 +91,12 @@ class EloquentStudentRepository extends BaseRepository implements StudentReposit
      */
     public function serverPagingFor(Request $request, $relations = null)
     {
-        $query = $this->newQueryBuilder()->withTrashed();
-        $query->where('type', 'student');
+        $query = $this->newQueryBuilder();
+        if ($request->get('type') == 'guest') {
+            $query->where('type', 'guest');
+        } else {
+            $query->where('type', 'student');
+        }
         if ($relations) {
             $query = $query->with($relations);
         }
@@ -126,31 +132,10 @@ class EloquentStudentRepository extends BaseRepository implements StudentReposit
                 $query->where('province_id', $province_id);
             });
         }
-        if ($request->get('categories') !== null) {
-            $categories = $request->get('categories');
-            $categories = explode('/', $categories);
-            $query->whereHas('profile', function ($query) use ($categories) {
-                foreach ($categories as $keyword) {
-                    $query->where('categories', 'LIKE', "%{$keyword}%");
-                }
-            });
-        }
-        if ($request->get('personal_categories') !== null) {
-            $personal_categories = $request->get('personal_categories');
-            $query->whereHas('profile', function ($query) use ($personal_categories) {
-                $query->where('personal_categories', 'LIKE', "%{$personal_categories}%");
-            });
-        }
         if ($request->get('gender') !== null) {
             $gender = $request->get('gender');
             $query->whereHas('profile', function ($query) use ($gender) {
                 $query->where('gender', 'LIKE', "%{$gender}%");
-            });
-        }
-        if ($request->get('company') !== null) {
-            $company = $request->get('company');
-            $query->whereHas('profile', function ($query) use ($company) {
-                $query->where('company', 'LIKE', "%{$company}%");
             });
         }
         if ($request->get('order_by') !== null && $request->get('order') !== 'null') {
@@ -158,7 +143,7 @@ class EloquentStudentRepository extends BaseRepository implements StudentReposit
 
             $query->orderBy($request->get('order_by'), $order);
         } else {
-            $query->orderBy('created_at', 'desc');
+            $query->orderBy('updated_at', 'desc');
         }
 
         if ($request->get('group_by') !== null) {

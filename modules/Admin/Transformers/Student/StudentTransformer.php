@@ -19,8 +19,8 @@ class StudentTransformer extends Resource
             'username' => $this->username,
             'profile' =>$this->profile?  new ProfileTransformer($this->profile) : [],
             'grades' => GradeTransformer::collection($this->grades),
-
             'status' => $this->status,
+            'type' => $this->type,
             'created_by' => $this->created_by,
             'createdBy' => $this->createdBy,
             'email_verified_at' => $this->email_verified_at,

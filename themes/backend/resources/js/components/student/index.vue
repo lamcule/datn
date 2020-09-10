@@ -127,6 +127,10 @@
                         style="width: 100%"
                         @sort-change="handleSortChange"
                     >
+                        <el-table-column
+                            type="index"
+                            width="50"
+                        />
                         <el-table-column type="expand">
                             <template slot-scope="props">
                                 <div

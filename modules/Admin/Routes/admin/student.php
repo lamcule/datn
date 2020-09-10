@@ -30,4 +30,33 @@ Route::group(['prefix' =>'/students'], function (){
         'uses' => 'Student\StudentController@edit',
     ])->middleware('permission:admin.student.edit');
 
+    Route::post('/', [
+        'as' => 'admin.student.destroy',
+        'uses' => 'Student\StudentController@destroy',
+    ])->middleware('permission:admin.student.destroy');
+
+    Route::group(['prefix' =>'/register'], function (){
+        Route::get('/', [
+            'as' => 'admin.student_register.index',
+            'uses' => 'StudentGuest\StudentGuestController@index',
+
+        ])->middleware('permission:admin.student.index');
+
+        Route::get('/create', [
+            'as' => 'admin.student_register.create',
+            'uses' => 'StudentGuest\StudentGuestController@create',
+        ])->middleware('permission:admin.student.create');
+
+        Route::get('/{user}/edit', [
+            'as' => 'admin.student_register.edit',
+            'uses' => 'StudentGuest\StudentGuestController@edit',
+        ])->middleware('permission:admin.student.edit');
+
+        Route::post('/', [
+            'as' => 'admin.student_register.destroy',
+            'uses' => 'Student\StudentController@destroy',
+        ])->middleware('permission:admin.student.destroy');
+
+    });
+
 });

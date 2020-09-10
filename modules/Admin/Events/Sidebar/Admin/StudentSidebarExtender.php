@@ -21,7 +21,7 @@ class StudentSidebarExtender extends AbstractAdminSidebar
 
         $menu->group('student', function (Group $group) {
             $group->hideHeading(true);
-            $group->item(trans('backend::sidebar.student'), function (Item $item) {
+            $group->item(trans('backend::sidebar.manage_student'), function (Item $item) {
                 $item->icon('far fa-user-graduate');
                 $item->weight(10);
                 $item->route('admin.student.index');
@@ -39,11 +39,11 @@ class StudentSidebarExtender extends AbstractAdminSidebar
                     );
                 });
 
-                $item->item(trans('backend::sidebar.student'), function (Item $item) {
+                $item->item(trans('backend::sidebar.student_guest'), function (Item $item) {
 
                     $item->weight(1);
 
-                    $item->route('admin.student.index');
+                    $item->route('admin.student_register.index');
                     $item->authorize(
                         $this->auth->hasAccess('admin.student.index')
                     );

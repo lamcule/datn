@@ -30,7 +30,7 @@ Route::group(['prefix' =>'/teacher'], function (){
         'uses' => 'Teacher\TeacherController@create',
     ])->middleware('permission:admin.teacher.create');
 
-    Route::get('/{teacher}/edit/{locale?}', [
+    Route::get('/{teacher}/edit', [
         'as' => 'admin.teacher.edit',
         'uses' => 'Teacher\TeacherController@edit',
     ])->middleware('permission:admin.teacher.edit');
