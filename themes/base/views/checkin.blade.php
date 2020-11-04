@@ -12,13 +12,18 @@
 <div class="container">
     <div class="row mt-5">
         <div class="col-md-6 col-8 offset-3">
-            <h2>Điểm danh {{ $lesson->grade->name }}</h2>
-
+            <div class="mb-5">
+                <h2>Điểm danh {{ $lesson->name }}</h2>
+                <span class="mb-5">Thời gian bắt đầu: {{ $lesson->start_time }}</span>
+                <br>
+                <span class="mb-5">Thời gian kết thúc: {{ $lesson->end_time }}</span>
+            </div>
             <form method="POST" action="{{ route('checkin.submit',['lesson' => $lesson->id]) }}" id="wrapped">
                 @csrf
                 <div id="middle-wizard">
                     <div class="step">
                         <div class="form-group">
+                            <label for="">Nhập mã học viên</label>
                             <input type="text" name="username" class="form-control required"
                                    value="{{ old('username') }}"
                                    placeholder="Mã học viên">
@@ -33,7 +38,7 @@
 
                 </div>
                 <div id="bottom-wizard">
-                    <button type="submit" name="process" class="submit">Submit</button>
+                    <button type="submit" name="process" class="submit btn btn-primary">Submit</button>
                 </div>
             </form>
         </div>

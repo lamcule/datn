@@ -50,22 +50,6 @@ class CourseExport implements FromQuery, WithMapping, WithHeadings, ShouldAutoSi
             $type = $request->get('type');
             $query->where('type', 'LIKE', "%{$type}%");
         }
-        if ($request->get('role') !== null) {
-            $role = $request->get('role');
-            $query->where('role', 'LIKE', "%{$role}%");
-        }
-        if ($request->get('frequency') !== null) {
-            $frequency = $request->get('frequency');
-            $query->where('frequency', 'LIKE', "%{$frequency}%");
-        }
-        if ($request->get('scale') !== null) {
-            $scale = $request->get('scale');
-            $query->where('scale', 'LIKE', "%{$scale}%");
-        }
-        if ($request->get('object') !== null) {
-            $object = $request->get('object');
-            $query->where('object', 'LIKE', "%{$object}%");
-        }
         if ($request->get('order_by') !== null && $request->get('order') !== 'null') {
             $order = $request->get('order') === 'ascending' ? 'asc' : 'desc';
 

@@ -18,10 +18,7 @@ class EloquentGradeRepository extends BaseRepository implements GradeRepository
      */
     public function getAll(Request $request)
     {
-        $grades = Cache::rememberForever('grades', function () {
-            return Grade::all();
-        });
-        return $grades;
+        return Grade::all();
     }
 
     public function create($data)
@@ -29,7 +26,6 @@ class EloquentGradeRepository extends BaseRepository implements GradeRepository
 
         $model = $this->model->create($data);
         $model = $this->generateAndSaveCode($model);
-        Cache::forget('grades');
         return $model;
     }
 
@@ -43,14 +39,12 @@ class EloquentGradeRepository extends BaseRepository implements GradeRepository
     public function update($model, $data)
     {
         $model->update($data);
-        Cache::forget('grades');
         return $model;
     }
 
     public function destroy($model)
     {
         $result = $model->delete();
-        Cache::forget('grades');
         return $result;
     }
 

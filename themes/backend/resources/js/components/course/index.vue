@@ -259,6 +259,16 @@ export default {
                     label: 'Other'
                 },
             ],
+            listStatus: [
+                {
+                    value: 'active',
+                    label: 'active'
+                },
+                {
+                    value: 'inactive',
+                    label: 'inactive'
+                }
+            ],
             listArea: [],
 
             currentLocale: window.MonCMS.currentLocale || 'en',

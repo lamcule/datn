@@ -37,52 +37,7 @@ class ReportSidebarExtender extends AbstractAdminSidebar
                     );
                 });
 
-                $item->item(trans('backend::sidebar.report grades'), function (Item $item) {
-
-                    $item->weight(0);
-
-                    $item->route('admin.report.grades');
-                    $item->authorize(
-                        $this->auth->hasAccess('admin.report.grades')
-                    );
-                });
-                $item->item(trans('backend::sidebar.report studyent activity'), function (Item $item) {
-
-                    $item->weight(0);
-
-                    $item->route('admin.report.studentActivity');
-                    $item->authorize(
-                        $this->auth->hasAccess('admin.report.studentActivity')
-                    );
-                });
-                $item->item(trans('backend::sidebar.report review history'), function (Item $item) {
-
-                    $item->weight(0);
-
-                    $item->route('admin.report.reviewHistory');
-                    $item->authorize(
-                        $this->auth->hasAccess('admin.report.reviewHistory')
-                    );
-                });
-	            $item->item(trans('backend::sidebar.report student lesson'), function (Item $item) {
-
-		            $item->weight(0);
-
-		            $item->route('admin.report.studentLesson');
-		            $item->authorize(
-			            $this->auth->hasAccess('admin.report.studentLesson')
-		            );
-	            });
-
-	            $item->item(trans('backend::sidebar.report course activity'), function (Item $item) {
-
-		            $item->weight(0);
-
-		            $item->route('admin.report.courseActivity');
-		            $item->authorize(
-			            $this->auth->hasAccess('admin.report.courseActivity')
-		            );
-	            });
+//
 
             });
         });

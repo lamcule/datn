@@ -21,8 +21,8 @@ Route::post('/checkin/{lesson}', 'GuestController@handleCheckin')->name('checkin
 //
 Route::get('/regist-course/{grade}', 'GuestController@registGrade')->name('grade.register');
 //
-//Route::get('/checkout/{lesson}', 'GuestController@checkout')->name('checkout');
-//Route::post('/checkout/{lesson}', 'GuestController@handlecheckout')->name('checkout.submit');
-//
-//Route::get('/review/{lesson}', 'GuestController@review')->name('review');
-//Route::post('/review/{lesson}', 'GuestController@handleReview')->name('review.submit');
+Route::get('/checkout/{lesson}', 'GuestController@checkout')->name('checkout');
+Route::post('/checkout/{lesson}', 'GuestController@handlecheckout')->name('checkout.submit');
+
+Route::get('/review/{lesson}', 'GuestController@review')->name('review');
+Route::post('/review/{lesson}', 'GuestController@handleReview')->name('review.submit');

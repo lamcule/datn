@@ -4,6 +4,7 @@ namespace Modules\Guest\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 use Modules\Guest\Repositories\GuestRepository;
@@ -78,19 +79,24 @@ class GuestController extends WebController
         $username = $request->get('username');
         $user = $this->guestRepository->getUser($username);
         if (!$user) {
-            $validator = Validator::make($request->all(), [
-
-            ]);
+            $validator = Validator::make($request->all(), []);
             $validator->errors()->add('username', trans('base::frontend.message.Student id not found'));
             return redirect(route('checkin',['lesson'=> $lesson->id]))
                 -> withErrors($validator)
                 -> withInput();
         }
+
+        if (strtotime(Carbon::now()) < strtotime($lesson->start_time) || strtotime(Carbon::now()) > strtotime($lesson->end_time)) {
+            $message = 'Đã hết thời gian check in';
+            $status = false;
+            return $this->view('message', compact('message', 'status'));
+        }
+
         // save checkin
         $result = $this->guestRepository->userCheckin($user, $lesson);
         $status = false;
         if ($result === true) {
-            $message='Cảm ơn Anh, Chị đã đăng nhập. Chúc Anh, Chị sẽ có một chương trình thú vị';
+            $message='Bạn đã check in thành công.';
             $status = true;
 
         } elseif ($result === false) {

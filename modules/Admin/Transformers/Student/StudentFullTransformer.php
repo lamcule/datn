@@ -21,6 +21,8 @@ class StudentFullTransformer extends Resource
             'profile' => new ProfileTransformer($this->profile),
             'status' => $this->status,
             'type' => $this->type,
+            'checkin_at' => $this->checkin_at,
+            'checkout_at' => $this->checkout_at,
             'grade_ids' => $this->grades()->get()->pluck('id')->all(),
             'created_at' => optional($this->created_at)->format('d-m-Y'),
             'updated_at' => optional($this->updated_at)->format('d-m-Y'),

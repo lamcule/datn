@@ -160,26 +160,6 @@
                 </div>
               </template>
             </el-table-column>
-            <el-table-column
-              prop="name"
-              :label="$t('qrcode.label.checkout')"
-              sortable="custom"
-            >
-              <template slot-scope="scope">
-                <div style="display: flex; align-items: center">
-                  <qrcode
-                    :value="scope.row.checkout_url"
-                    :options="{ width: 100 }"
-                  />
-                  <el-button
-                    style="height: 40px; margin-left: 10px"
-                    type="warning"
-                    icon="el-icon-printer"
-                    @click="printQRCheckout(scope.row)"
-                  />
-                </div>
-              </template>
-            </el-table-column>
 
             <el-table-column
                     prop="name"

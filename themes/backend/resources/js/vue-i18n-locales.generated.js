@@ -688,6 +688,8 @@ export default {
                 "other": "Khác",
                 "grade": "Lớp học",
                 "grade joined": "Lớp học tham gia",
+                'deleted_at':'Thời gian xóa',
+                'manage_student':'Quản lý học viên',
             },
             "tabs": {
                 "data": "Thông tin",

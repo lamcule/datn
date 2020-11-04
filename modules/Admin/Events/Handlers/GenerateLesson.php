@@ -27,7 +27,8 @@ class GenerateLesson
      */
     public function __construct(
         LessonRepository $lessonRepository
-    ) {
+    )
+    {
         $this->lessonRepository = $lessonRepository;
 
     }
@@ -35,7 +36,7 @@ class GenerateLesson
     /**
      * Handle the event.
      *
-     * @param  GradeCreated $event
+     * @param GradeCreated $event
      * @return void
      */
     public function handle(GradeCreated $event)

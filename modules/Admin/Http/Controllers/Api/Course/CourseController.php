@@ -2,8 +2,11 @@
 
 namespace Modules\Admin\Http\Controllers\Api\Course;
 
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Modules\Admin\Repositories\GradeRepository;
+use Modules\Admin\Repositories\LessonRepository;
 use Modules\Admin\Transformers\Course\CourseFullTransformer;
 use Modules\Admin\Transformers\Course\CourseTransformer;
 use Modules\Mon\Entities\Course;
@@ -22,12 +25,17 @@ class CourseController extends ApiController
      * @var CourseRepository
      */
     private $courseRepository;
+    private $gradeRepository;
+    private $lessonRepository;
 
-    public function __construct(Authentication $auth, CourseRepository $course)
+    public function __construct(Authentication $auth, CourseRepository $course,
+                                GradeRepository $grade, LessonRepository $lesson)
     {
         parent::__construct($auth);
 
         $this->courseRepository = $course;
+        $this->gradeRepository = $grade;
+        $this->lessonRepository = $lesson;
     }
 
 
@@ -74,7 +82,29 @@ class CourseController extends ApiController
 
     public function destroy(Course $course)
     {
-        $this->courseRepository->destroy($course);
+        try {
+            DB::beginTransaction();
+            $this->courseRepository->destroy($course);
+
+            $grades = $this->gradeRepository->newQueryBuilder()
+                ->select('id')
+                ->where('course_id', $course->id)->get();
+            $this->gradeRepository->deleteMultiRecord($grades->toArray());
+
+            $lessons = $this->lessonRepository->newQueryBuilder()
+                ->select('id')
+                ->where('course_id', $course->id)->get();
+            $this->lessonRepository->deleteMultiRecord($lessons->toArray());
+
+            DB::commit();
+        } catch (\Exception $e) {
+
+            DB::rollBack();
+            return response()->json([
+                'errors' => true,
+                'message' => $e->getMessage(),
+            ]);
+        }
 
         return response()->json([
             'errors' => false,

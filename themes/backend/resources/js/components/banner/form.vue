@@ -45,6 +45,23 @@
                                 />
                             </el-form-item>
                             <el-form-item
+                                :label="$t('banner.label.image')"
+                                :class="{'el-form-item is-error': form.errors.has('image') }"
+                            >
+                                <single-media
+                                    zone="banner"
+                                    entity="banner"
+                                    hint="  "
+                                    @singleFileSelected="selectSingleFile($event, 'modelForm.image')"
+                                    @fileSorted="fileSorted($event, 'modelForm.image')"
+                                />
+                                <div
+                                    v-if="form.errors.has('image')"
+                                    class="el-form-item__error"
+                                    v-text="form.errors.first('image')"
+                                />
+                            </el-form-item>
+                            <el-form-item
                                 :label="$t('banner.label.link')"
                                 :class="{'el-form-item is-error': form.errors.has('link') }"
                             >
@@ -122,8 +139,14 @@
 <script>
 import axios from 'axios'
 import Form from 'form-backend-validation'
+import SingleMedia from '../media/js/components/SingleMedia'
+import SingleFileSelector from '../../mixins/SingleFileSelector'
 
 export default {
+    components: {
+        SingleMedia
+    },
+    mixins: [SingleFileSelector],
     props: {
         locales: {default: null},
         pageTitle: {default: null, String}

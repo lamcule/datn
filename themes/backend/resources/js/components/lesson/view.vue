@@ -8,11 +8,8 @@
                 <el-breadcrumb-item>
                     <a href="/admin">{{ $t('mon.breadcrumb.home') }}</a>
                 </el-breadcrumb-item>
-                <el-breadcrumb-item :to="{name: 'admin.course.index'}">
-                    {{ $t('course.label.manage_course') }}
-                </el-breadcrumb-item>
-                <el-breadcrumb-item :to="{name: 'admin.course.view', params: {courseId: lesson.course_id}}">
-                    {{ lesson.grade.course_name }}
+                <el-breadcrumb-item :to="{name: 'admin.grade.index'}">
+                    {{ $t('grade.label.manage_grade') }}
                 </el-breadcrumb-item>
                 <el-breadcrumb-item :to="{name: 'admin.grade.view', params: {gradeId: lesson.grade_id}}">
                     {{ lesson.grade.name }}
@@ -43,22 +40,6 @@
                             </el-button>
                             <qrcode
                                 :value="lesson.checkin_url"
-                                :options="{ width: 120 }"
-                            />
-                        </div>
-                        <div style="display: flex;
-    flex-direction: column;align-items: center;">
-                            <p><label>{{ $t('lesson.label.checkout_qr') }}</label></p>
-                            <el-button
-
-                                type="primary"
-                                icon="el-icon-printer"
-                                @click="printQRCheckout"
-                            >
-                                In
-                            </el-button>
-                            <qrcode
-                                :value="lesson.checkout_url"
                                 :options="{ width: 120 }"
                             />
                         </div>
@@ -115,12 +96,6 @@
                                 name="lesson"
                             >
                                 <student-table/>
-                            </el-tab-pane>
-                            <el-tab-pane
-                                :label="$t('lesson.tabs.detail')"
-                                name="detail"
-                            >
-                                <lesson-detail :lesson="lesson"/>
                             </el-tab-pane>
                         </el-tabs>
                     </div>

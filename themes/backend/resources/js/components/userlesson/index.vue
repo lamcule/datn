@@ -292,14 +292,6 @@
         >
           {{ $t('report.label.download') }}
         </el-button>
-        <el-button
-          type="danger"
-          size="small"
-          class="btn btn-flat btn-danger"
-          @click="showCheckinoutDialog = true"
-        >
-          {{ $t('checkinout.label.btnCheckInOut') }}
-        </el-button>
       </div>
     </div>
     <div class="box box-success">
@@ -371,11 +363,6 @@
             <el-table-column
               prop="checkin_at"
               :label="$t('checkinout.label.checkin_at')"
-              sortable="custom"
-            />
-            <el-table-column
-              prop="checkout_at"
-              :label="$t('checkinout.label.checkout_at')"
               sortable="custom"
             />
           </el-table>

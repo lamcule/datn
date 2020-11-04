@@ -2,9 +2,11 @@
 
 namespace Modules\Admin\Http\Controllers\Api\Grade;
 
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Admin\Events\GradeCreated;
+use Modules\Admin\Repositories\LessonRepository;
 use Modules\Admin\Transformers\Grade\GradeFullTransformer;
 use Modules\Admin\Transformers\Grade\GradeTransformer;
 use Modules\Admin\Transformers\Student\StudentFullTransformer;
@@ -25,11 +27,17 @@ class GradeController extends ApiController
      */
     private $gradeRepository;
 
-    public function __construct(Authentication $auth, GradeRepository $grade)
+    /**
+     * @var LessonRepository
+     */
+    private $lessonRepository;
+
+    public function __construct(Authentication $auth, GradeRepository $grade, LessonRepository $lesson)
     {
         parent::__construct($auth);
 
         $this->gradeRepository = $grade;
+        $this->lessonRepository = $lesson;
     }
 
 
@@ -47,8 +55,18 @@ class GradeController extends ApiController
 
     public function store(CreateGradeRequest $request)
     {
-        $grade = $this->gradeRepository->create($request->all());
-        event(new GradeCreated($grade));
+        try {
+            DB::beginTransaction();
+            $grade = $this->gradeRepository->create($request->all());
+            event(new GradeCreated($grade));
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json([
+                'errors' => true,
+                'message' => $e->getMessage(),
+            ]);
+        }
 
         return response()->json([
             'errors' => false,
@@ -64,7 +82,7 @@ class GradeController extends ApiController
 
     public function update(Grade $grade, UpdateGradeRequest $request)
     {
-        $this->gradeRepository->update($grade, $request->all());
+       $this->gradeRepository->update($grade, $request->all());
 
         return response()->json([
             'errors' => false,
@@ -74,7 +92,25 @@ class GradeController extends ApiController
 
     public function destroy(Grade $grade)
     {
-        $this->gradeRepository->destroy($grade);
+        try {
+            DB::beginTransaction();
+            $this->gradeRepository->destroy($grade);
+
+            $lessons = $this->lessonRepository->newQueryBuilder()
+                ->select('id')
+                ->where('grade_id', $grade->id)->get();
+
+            $this->lessonRepository->deleteMultiRecord($lessons->toArray());
+            DB::commit();
+        } catch (\Exception $e) {
+
+            DB::rollBack();
+            return response()->json([
+                'errors' => true,
+                'message' => $e->getMessage(),
+            ]);
+        }
+
 
         return response()->json([
             'errors' => false,

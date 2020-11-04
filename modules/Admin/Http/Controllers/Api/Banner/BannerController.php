@@ -76,4 +76,12 @@ class BannerController extends ApiController
             'message' => trans('backend::banner.message.delete success'),
         ]);
     }
+
+    public function getBannerHome()
+    {
+        $banners = $this->bannerRepository->newQueryBuilder()->where('status', 'active')
+            ->orderBy('position', 'desc')->limit(3)->get();
+
+        return BannerTransformer::collection($banners);
+    }
 }

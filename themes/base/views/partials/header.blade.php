@@ -13,7 +13,7 @@
                 <div class="col-lg-9 d-none d-lg-block">
                     <a href="#" class="small mr-3"><span class="icon-question-circle-o mr-2"></span> Có câu hỏi?</a>
                     <a href="#" class="small mr-3"><span class="icon-phone2 mr-2"></span> 10 20 123 456</a>
-                    <a href="#" class="small mr-3"><span class="icon-envelope-o mr-2"></span> info@mydomain.com</a>
+                    <a href="#" class="small mr-3"><span class="icon-envelope-o mr-2"></span> academic@gmail.com</a>
                 </div>
             </div>
         </div>

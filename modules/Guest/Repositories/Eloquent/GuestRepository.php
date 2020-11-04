@@ -45,8 +45,7 @@ class GuestRepository extends BaseRepository implements \Modules\Guest\Repositor
 
     public function getUser($username)
     {
-        $id = $this->parseId($username);
-        return $this->newQueryBuilder()->find($id);
+        return $this->newQueryBuilder()->select('*')->where('username', $username)->first();
     }
     public function getUserByEmail($email)
     {

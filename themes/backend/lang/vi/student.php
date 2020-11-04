@@ -13,7 +13,7 @@ return [
         'create_record' => 'Tạo mới',
         'update_record' => 'Cập nhật',
         'created_by' => 'Người tạo',
-
+        'manage_student' => 'Quản lý học viên',
         'students' => 'Học viên',
         'roles' => 'Vai trò',
         'change_password' => 'Đổi mật khẩu',
@@ -39,6 +39,7 @@ return [
         'male' => 'Nam',
         'female' => 'Nữ',
         'other' => 'Khác',
+        'deleted_at' => 'Thời gian xóa',
 
     ],
     'tabs' => [

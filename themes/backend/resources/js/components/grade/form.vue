@@ -462,16 +462,6 @@ export default {
             }
             return route('api.grade.store')
         },
-        handleCheckAllChange(val) {
-            this.modelForm.roles = val ? this.roles.map(item => item.id) : []
-            this.isIndeterminate = false
-        },
-        handleCheckedChange(value) {
-            let checkedCount = value.length
-            this.checkAll = checkedCount === this.roles.length
-            this.isIndeterminate = checkedCount > 0 && checkedCount < this.roles.length
-        }
-
     }
 }
 </script>

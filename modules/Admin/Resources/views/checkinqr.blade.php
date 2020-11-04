@@ -35,7 +35,8 @@
                     </tbody>
                 </table>
             </div>
-            {!! QrCode::size(480)->generate(route('checkin', ['lesson' => $lesson->id], true)); !!}
+
+            <a href="{{ route('checkin', ['lesson' => $lesson->id], true) }}">{{ route('checkin', ['lesson' => $lesson->id], true)}} </a>
         </div>
     </div>
 

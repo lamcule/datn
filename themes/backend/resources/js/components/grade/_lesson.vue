@@ -91,18 +91,6 @@
             />
 
             <el-table-column
-                    prop="place"
-                    :label="$t('lesson.label.place')"
-                    sortable="custom"
-            />
-
-            <el-table-column
-                    prop="teacher"
-                    :label="$t('lesson.label.teacher')"
-                    sortable="custom"
-            />
-
-            <el-table-column
               prop="start_time"
               :label="$t('lesson.label.start_time')"
               sortable="custom"

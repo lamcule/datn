@@ -27,11 +27,10 @@ class EventServiceProvider extends ServiceProvider
             ManageWebsiteSidebarExtender::class,
             StudentSidebarExtender::class,
             TeacherSidebarExtender::class,
-            CourseSidebarExtender::class,
             GradeSidebarExtender::class,
+            CourseSidebarExtender::class,
             ReportSidebarExtender::class,
             ReviewSidebarExtender::class,
-            StudentImportSidebarExtender::class,
         ],
         GradeCreated::class => [
             GenerateLesson::class

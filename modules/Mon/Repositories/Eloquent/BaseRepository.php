@@ -44,6 +44,12 @@ abstract class BaseRepository implements BaseRepositoryInterface
         return $model->delete();
     }
 
+    public function deleteMultiRecord($records)
+    {
+        $result = $this->model->destroy($records);
+        return $result;
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Builder
      */

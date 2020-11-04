@@ -12,8 +12,8 @@ class EventServiceProvider extends ServiceProvider
 {
     protected $listen = [
         StudentRegistedCourse::class => [
-            SendEmailRegistSuccess::class,
-            SendSmsRegistSuccess::class
+//            SendEmailRegistSuccess::class,
+//            SendSmsRegistSuccess::class
         ]
 
     ];

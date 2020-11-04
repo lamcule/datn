@@ -47,4 +47,10 @@ Route::middleware('auth:api')->prefix('banner')->group(function () {
     ]);
 });
 
+Route::get('/banner-home', [
+    'as' => 'api.banner.home',
+    'uses' => 'Banner\BannerController@getBannerHome',
+
+]);
+
 

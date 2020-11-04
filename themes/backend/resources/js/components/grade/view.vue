@@ -5,11 +5,8 @@
         <el-breadcrumb-item>
           <a href="/admin">{{ $t('mon.breadcrumb.home') }}</a>
         </el-breadcrumb-item>
-        <el-breadcrumb-item :to="{name: 'admin.course.index'}">
-          {{ $t('course.label.manage_course') }}
-        </el-breadcrumb-item>
-        <el-breadcrumb-item :to="{name: 'admin.course.view', params: {courseId: grade.course_id}}">
-          {{ grade.course }}
+        <el-breadcrumb-item :to="{name: 'admin.grade.index'}">
+          {{ $t('grade.label.manage_grade') }}
         </el-breadcrumb-item>
         <el-breadcrumb-item>
           {{ grade.name }}
@@ -48,12 +45,6 @@
 
               >
                 <lesson-table :grade="grade"/>
-              </el-tab-pane>
-              <el-tab-pane
-                :label="$t('grade.tabs.detail')"
-                name="detail"
-              >
-                <grade-detail :grade="grade"/>
               </el-tab-pane>
               <el-tab-pane
                       :label="$t('grade.tabs.students')"

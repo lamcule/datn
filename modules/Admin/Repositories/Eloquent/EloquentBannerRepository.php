@@ -12,31 +12,25 @@ class EloquentBannerRepository extends BaseRepository implements BannerRepositor
 {
     public function getAll(Request $request)
     {
-        $banner = Cache::rememberForever('banner', function () {
-            return Banner::all();
-        });
-        return $banner;
+        return Banner::all();
     }
 
     public function create($data)
     {
 
         $model = $this->model->create($data);
-        Cache::forget('banner');
         return $model;
     }
 
     public function update($model, $data)
     {
         $model->update($data);
-        Cache::forget('banner');
         return $model;
     }
 
     public function destroy($model)
     {
         $result = $model->delete();
-        Cache::forget('banner');
         return $result;
     }
 

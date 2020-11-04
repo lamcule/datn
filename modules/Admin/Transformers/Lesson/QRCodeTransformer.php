@@ -28,9 +28,9 @@ class QRCodeTransformer extends Resource
 
             'start_time' => optional($this->start_time)->format('d-m-Y H:i:s'),
             'end_time' => optional($this->end_time)->format('d-m-Y H:i:s'),
-            'checkin_url' => route('admin.checkinqr', ['lesson' => $this->id], true),
-            'checkout_url' =>route('admin.checkoutqr', ['lesson' => $this->id], true),
-            'review_url' =>route('admin.reviewqr', ['lesson' => $this->id], true),
+            'checkin_url' => route('checkin', ['lesson' => $this->id], true),
+            'checkout_url' =>route('checkin', ['lesson' => $this->id], true),
+            'review_url' =>route('review', ['lesson' => $this->id], true),
             'urls' => [
                 'delete_url' => route('api.lesson.destroy', $this->id),
             ],

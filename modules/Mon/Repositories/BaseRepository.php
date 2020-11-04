@@ -17,6 +17,8 @@ interface BaseRepository
 
     public function destroy($model);
 
+    public function deleteMultiRecord($records);
+
     public function newQueryBuilder(): Builder;
 
     public function serverPagingFor(Request $request, $relations = null);

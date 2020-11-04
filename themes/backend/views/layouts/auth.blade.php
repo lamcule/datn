@@ -37,7 +37,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="login-logo">
-        <a href="#">SVF CRM</a>
+        <a href="#">Academic</a>
     </div>
     <!-- Main content -->
     <section class="content">

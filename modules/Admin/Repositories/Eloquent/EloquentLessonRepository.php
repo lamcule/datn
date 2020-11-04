@@ -18,17 +18,13 @@ class EloquentLessonRepository extends BaseRepository implements LessonRepositor
      * @return \Illuminate\Database\Eloquent\Collection|static[]
      */
     public function getAll(Request $request) {
-        $lessons = Cache::rememberForever('lessons', function () {
-            return Lesson::all();
-        });
-        return $lessons;
+        return Lesson::all();
     }
 
     public function create($data)
     {
 
         $model = $this->model->create($data);
-        Cache::forget('lessons');
         event(new LessonWasCreated($model, $data));
         return $model;
     }
@@ -36,7 +32,6 @@ class EloquentLessonRepository extends BaseRepository implements LessonRepositor
     public function update($model, $data)
     {
         $model->update($data);
-        Cache::forget('lessons');
         event(new LessonWasUpdated($model, $data));
         return $model;
     }
@@ -44,7 +39,6 @@ class EloquentLessonRepository extends BaseRepository implements LessonRepositor
     public function destroy($model)
     {
         $result = $model->delete();
-        Cache::forget('lessons');
         return $result;
     }
 
